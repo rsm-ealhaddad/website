@@ -11,13 +11,3 @@ Let's investigate the relationship between fuel efficiency (`mpg`) and engine di
 ## Sub-Header
 
 Here is a plot:
-
-```{r}
-#| message: false
-
-library(tidyverse)
-data(mtcars)
-mtcars |>
-  ggplot(aes(mpg, disp)) +
-  geom_point(color="dodgerblue4", size=2)
-```
