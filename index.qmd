@@ -1,0 +1,13 @@
+---
+title: "Ebrahim Alhaddad"
+image: "files/untitled.jpg"
+about:
+  template: jolla
+  links:
+    - icon: envelope
+      href: mailto:efalhadd@gmail.com
+    - icon: linkedin
+      href: https://www.linkedin.com/in/efalhadd/
+---
+
+Welcome to my website!

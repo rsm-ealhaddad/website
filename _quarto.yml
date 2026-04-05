@@ -1,0 +1,19 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Ebrahim's Website"
+  navbar:
+    left:
+      - href: index.qmd
+        text: About
+      - href: resume.qmd
+        text: Resume
+      - href: projects.qmd  # <-- add this
+        text: Projects      # <-- add this
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
