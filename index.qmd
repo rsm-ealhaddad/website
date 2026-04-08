@@ -10,4 +10,20 @@ about:
       href: https://www.linkedin.com/in/efalhadd/
 ---
 
-Welcome to my website!
+::: {.hero}
+
+# Welcome to my website
+
+Hello! I'm **Ebrahim Alhaddad**, a business analytics student building polished Quarto pages for class projects, resume highlights, and portfolio showcases.
+
+I enjoy combining data, design, and storytelling to create websites that are both informative and visually clean.
+
+## What I’m working on
+
+- Analytics dashboards and data visualization
+- Responsive website layout with Quarto
+- Personal branding and portfolio design
+
+[Explore my projects](projects.qmd){.btn .btn-primary}
+
+:::
