@@ -1,0 +1,327 @@
+---
+title: "Replication of Card and Krueger (1994)"
+subtitle: "Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania"
+author: "Ebrahim Alhaddad"
+date: today
+format:
+  html:
+    toc: true
+    number-sections: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Introduction
+
+In this post I replicate core results from Card and Krueger (1994), a classic paper in empirical economics. The paper studies the effect of New Jersey's April 1992 minimum wage increase from $4.25 to $5.05 per hour on employment in fast-food restaurants. The authors compare restaurants in New Jersey, which received the policy change, to restaurants in eastern Pennsylvania, where the minimum wage did not change. This gives a natural **difference-in-differences** design.
+
+The paper focuses on a simple question: **did the higher minimum wage reduce employment?** Under the standard competitive model, the answer should be yes. But Card and Krueger find no evidence of job loss. In fact, their data suggest that employment in New Jersey rose relative to Pennsylvania.
+
+For this assignment I do three things:
+
+1. Replicate the key descriptive comparison in **Table 2**.
+2. Replicate the core difference-in-differences result from **Table 3** and the basic regression from **Table 4, column (i)**.
+3. Add one extra piece of analysis by graphing the before/after employment patterns that the paper mostly presents in table form.
+
+## Main Analysis
+
+### Load and prepare the data
+
+The public data are stored in a fixed-width ASCII file (`public.dat`). I use the codebook and the original SAS checking program to reconstruct the variables used in the paper, including:
+
+- **FTE employment** = full-time employees + managers + 0.5 × part-time employees
+- **gap** = proportional wage increase needed to reach the new minimum wage in New Jersey
+- **pmeal** = price of a full meal = soda + fries + entree
+- indicators for chain type and New Jersey vs. Pennsylvania
+
+```{python}
+import numpy as np
+import pandas as pd
+import statsmodels.formula.api as smf
+import matplotlib.pyplot as plt
+from scipy.stats import ttest_ind
+
+# Fixed-width layout from the codebook
+colspecs = [
+    (0,3),(4,5),(6,7),(8,9),(10,11),(12,13),(14,15),(16,17),(18,19),(20,21),
+    (22,24),(25,30),(31,36),(37,42),(43,48),(49,54),(55,60),(61,62),(63,68),(69,70),
+    (71,76),(77,82),(83,88),(89,94),(95,100),(101,103),(104,106),
+    (107,108),(109,110),(111,117),(118,120),(121,126),(127,132),(133,138),(139,144),
+    (145,150),(151,156),(157,158),(159,160),(161,166),(167,172),(173,178),(179,184),
+    (185,190),(191,193),(194,196)
+]
+
+names = [
+    "sheet","chain","co_owned","state","southj","centralj","northj","pa1","pa2","shore",
+    "ncalls","empft","emppt","nmgrs","wage_st","inctime","firstinc","bonus","pctaff","meals",
+    "open","hrsopen","psoda","pfry","pentree","nregs","nregs11","type2","status2","date2","ncalls2",
+    "empft2","emppt2","nmgrs2","wage_st2","inctime2","firstin2","special2","meals2","open2r","hrsopen2",
+    "psoda2","pfry2","pentree2","nregs2","nregs112"
+]
+
+# Read the public data file
+raw = pd.read_fwf("public.dat", colspecs=colspecs, names=names)
+
+# Convert any non-numeric placeholders such as '.' to NaN
+for c in raw.columns:
+    if raw[c].dtype == object:
+        raw[c] = pd.to_numeric(raw[c], errors="coerce")
+
+df = raw.copy()
+
+# Construct variables used in the paper / SAS check file
+# Full-time-equivalent employment
+
+df["emptot"] = df["empft"] + df["nmgrs"] + 0.5 * df["emppt"]
+df["emptot2"] = df["empft2"] + df["nmgrs2"] + 0.5 * df["emppt2"]
+df["demp"] = df["emptot2"] - df["emptot"]
+
+df["gap"] = np.where(
+    df["state"] == 0,
+    0,
+    np.where(
+        df["wage_st"] >= 5.05,
+        0,
+        np.where(df["wage_st"] > 0, (5.05 - df["wage_st"]) / df["wage_st"], np.nan)
+    )
+)
+
+# State and chain indicators
+
+df["nj"] = df["state"]
+df["bk"] = (df["chain"] == 1).astype(int)
+df["kfc"] = (df["chain"] == 2).astype(int)
+df["roys"] = (df["chain"] == 3).astype(int)
+df["wendys"] = (df["chain"] == 4).astype(int)
+
+# Other variables used in tables
+
+df["pmeal"] = df["psoda"] + df["pfry"] + df["pentree"]
+df["pmeal2"] = df["psoda2"] + df["pfry2"] + df["pentree2"]
+df["fracft"] = df["empft"] / df["emptot"]
+df["fracft2"] = np.where(df["emptot2"] > 0, df["empft2"] / df["emptot2"], np.nan)
+df["atmin"] = (df["wage_st"] == 4.25).astype(int)
+df["newmin"] = (df["wage_st2"] == 5.05).astype(int)
+df["closed"] = (df["status2"] == 3).astype(int)
+
+# The paper treats the four temporarily closed stores as zero only in one row of Table 3.
+# These statuses correspond to renovation / temporary closures / fire / construction.
+TEMP_CLOSED = {2, 4, 5}
+df["emptot2_zero_temp"] = df["emptot2"]
+df.loc[df["status2"].isin(TEMP_CLOSED), "emptot2_zero_temp"] = 0
+df["demp_zero_temp"] = df["emptot2_zero_temp"] - df["emptot"]
+
+# Samples used below
+balanced = df[df["demp"].notna()].copy()
+row5_sample = df[(df["demp"].notna()) | (df["status2"].isin(TEMP_CLOSED) & df["emptot"].notna())].copy()
+
+def mean_se(x):
+    x = pd.to_numeric(x, errors="coerce").dropna()
+    return pd.Series({"mean": x.mean(), "se": x.std(ddof=1) / np.sqrt(len(x)), "n": len(x)})
+
+print(f"Observations in public data: {len(df)}")
+```
+
+### Replicating Table 2
+
+Table 2 compares New Jersey and Pennsylvania stores before and after the policy change. My replicated means line up closely with the paper. The two most important patterns are the same as in the published table:
+
+- In **wave 1**, average FTE employment is lower in New Jersey than in Pennsylvania (about **20.44 vs. 23.33**).
+- In **wave 2**, New Jersey's average starting wage rises sharply to about **5.08**, while Pennsylvania stays near **4.62**.
+
+```{python}
+def t_stat(var):
+    nj = df.loc[df["nj"] == 1, var].dropna()
+    pa = df.loc[df["nj"] == 0, var].dropna()
+    return ttest_ind(nj, pa, equal_var=True, nan_policy="omit").statistic
+
+rows = [
+    ("Burger King share", "bk"),
+    ("KFC share", "kfc"),
+    ("Roy Rogers share", "roys"),
+    ("Wendy's share", "wendys"),
+    ("Company-owned share", "co_owned"),
+    ("FTE employment, wave 1", "emptot"),
+    ("Share full-time, wave 1", "fracft"),
+    ("Starting wage, wave 1", "wage_st"),
+    ("Wage = $4.25, wave 1", "atmin"),
+    ("Price of full meal, wave 1", "pmeal"),
+    ("Hours open, wave 1", "hrsopen"),
+    ("Recruiting bonus, wave 1", "bonus"),
+    ("FTE employment, wave 2", "emptot2"),
+    ("Share full-time, wave 2", "fracft2"),
+    ("Starting wage, wave 2", "wage_st2"),
+    ("Wage = $5.05, wave 2", "newmin"),
+    ("Price of full meal, wave 2", "pmeal2"),
+    ("Hours open, wave 2", "hrsopen2"),
+    ("Recruiting bonus, wave 2", "special2")
+]
+
+table2 = pd.DataFrame({
+    "Variable": [r[0] for r in rows],
+    "NJ": [df.loc[df["nj"] == 1, r[1]].mean() for r in rows],
+    "PA": [df.loc[df["nj"] == 0, r[1]].mean() for r in rows],
+    "t statistic": [t_stat(r[1]) for r in rows]
+})
+
+table2.round(2)
+```
+
+A nice check is that these replicated values are very close to the published Table 2 values. For example, the paper reports approximately **20.4 vs. 23.3** for wave-1 employment and **5.08 vs. 4.62** for wave-2 starting wages, which is exactly what I obtain up to rounding.
+
+### Replicating Table 3: the key difference-in-differences result
+
+Table 3 is the heart of the paper. The key row is the **balanced sample** comparison, where employment is observed in both periods.
+
+The difference-in-differences estimate is:
+
+\[
+(\Delta Employment_{NJ}) - (\Delta Employment_{PA})
+\]
+
+Using the balanced sample, I get:
+
+- **Pennsylvania change:** \(-2.28\) FTE workers
+- **New Jersey change:** \(+0.47\) FTE workers
+- **Difference-in-differences:** **\(+2.75\)** FTE workers
+
+This essentially matches the paper's reported **+2.76** result.
+
+```{python}
+pa = df[df["nj"] == 0]
+nj = df[df["nj"] == 1]
+low = df[(df["nj"] == 1) & (df["wage_st"] == 4.25)]
+mid = df[(df["nj"] == 1) & (df["wage_st"] > 4.25) & (df["wage_st"] < 5.00)]
+high = df[(df["nj"] == 1) & (df["wage_st"] >= 5.00)]
+
+groups = {
+    "PA": pa,
+    "NJ": nj,
+    "Low wage NJ": low,
+    "Mid wage NJ": mid,
+    "High wage NJ": high,
+}
+
+def summary_for_group(g):
+    before = g["emptot"].mean()
+    after = g["emptot2"].mean()
+    change_means = after - before
+    change_bal = balanced.loc[g.index.intersection(balanced.index), "demp"].mean()
+    change_bal_zero = row5_sample.loc[g.index.intersection(row5_sample.index), "demp_zero_temp"].mean()
+    return before, after, change_means, change_bal, change_bal_zero
+
+summary = {name: summary_for_group(g) for name, g in groups.items()}
+
+rep_table3 = pd.DataFrame({
+    "Variable": [
+        "FTE employment before (all available)",
+        "FTE employment after (all available)",
+        "Change in mean FTE employment (all available means)",
+        "Change in mean FTE employment (balanced sample)",
+        "Change in mean FTE employment (balanced, temp. closed = 0)",
+    ]
+})
+
+for name in groups:
+    rep_table3[name] = summary[name]
+
+rep_table3["NJ - PA"] = rep_table3["NJ"] - rep_table3["PA"]
+rep_table3["Low - High"] = [np.nan, np.nan, np.nan,
+                             rep_table3.loc[3, "Low wage NJ"] - rep_table3.loc[3, "High wage NJ"],
+                             rep_table3.loc[4, "Low wage NJ"] - rep_table3.loc[4, "High wage NJ"]]
+rep_table3["Mid - High"] = [np.nan, np.nan, np.nan,
+                             rep_table3.loc[3, "Mid wage NJ"] - rep_table3.loc[3, "High wage NJ"],
+                             rep_table3.loc[4, "Mid wage NJ"] - rep_table3.loc[4, "High wage NJ"]]
+
+rep_table3.round(2)
+```
+
+The main conclusion from this table is the same as the paper's conclusion: employment did **not** fall in New Jersey relative to Pennsylvania after the minimum wage increase. If anything, it rose.
+
+### Replicating Table 4, column (i)
+
+Table 4 turns the simple comparison into a regression. The required replication is **column (i)**, where the dependent variable is the change in FTE employment and the key regressor is a New Jersey dummy.
+
+Following the paper, I restrict to the subset of stores with available employment and wage data in both waves (or stores that closed in wave 2). This yields the same sample size as the paper: **357 stores**.
+
+```{python}
+# Same sample restriction as the SAS check program / Table 4
+reg_sample = df[df["demp"].notna() & ((df["closed"] == 1) | (df["wage_st2"] - df["wage_st"]).notna())].copy()
+
+m1 = smf.ols("demp ~ nj", data=reg_sample).fit()
+m2 = smf.ols("demp ~ nj + bk + kfc + roys + co_owned", data=reg_sample).fit()
+m3 = smf.ols("demp ~ gap", data=reg_sample).fit()
+m4 = smf.ols("demp ~ gap + bk + kfc + roys + co_owned", data=reg_sample).fit()
+m5 = smf.ols("demp ~ gap + bk + kfc + roys + centralj + southj + pa1 + pa2", data=reg_sample).fit()
+
+reg_table = pd.DataFrame({
+    "Model": ["(i)", "(ii)", "(iii)", "(iv)", "(v)"],
+    "Treatment variable": ["NJ dummy", "NJ dummy", "Initial wage gap", "Initial wage gap", "Initial wage gap"],
+    "Coefficient": [m1.params["nj"], m2.params["nj"], m3.params["gap"], m4.params["gap"], m5.params["gap"]],
+    "Std. Error": [m1.bse["nj"], m2.bse["nj"], m3.bse["gap"], m4.bse["gap"], m5.bse["gap"]],
+    "Chain/ownership controls": ["No", "Yes", "No", "Yes", "Yes"],
+    "Region controls": ["No", "No", "No", "No", "Yes"],
+    "SER": [np.sqrt(m1.scale), np.sqrt(m2.scale), np.sqrt(m3.scale), np.sqrt(m4.scale), np.sqrt(m5.scale)],
+})
+
+reg_table.round(2)
+```
+
+My replication of **Table 4, column (i)** is:
+
+- **Coefficient on New Jersey dummy:** **2.33**
+- **Standard error:** **1.19**
+
+This matches the published table essentially exactly. The interpretation is that employment growth in New Jersey was about **2.33 FTE workers higher** than in Pennsylvania in the restricted regression sample.
+
+So the main result in the paper shows up clearly in these estimates.
+
+## Something Additional
+
+For my additional analysis, I turn the paper's table-based comparison into a picture. The paper discusses these patterns in Table 3, but a graph makes the result much easier to see.
+
+I plot average FTE employment before and after the policy for four groups:
+
+- Pennsylvania stores
+- all New Jersey stores
+- low-wage New Jersey stores
+- high-wage New Jersey stores
+
+```{python}
+plot_df = pd.DataFrame({
+    "group": ["Pennsylvania", "New Jersey", "NJ low wage", "NJ high wage"],
+    "Before": [pa["emptot"].mean(), nj["emptot"].mean(), low["emptot"].mean(), high["emptot"].mean()],
+    "After": [pa["emptot2"].mean(), nj["emptot2"].mean(), low["emptot2"].mean(), high["emptot2"].mean()],
+})
+
+fig, ax = plt.subplots(figsize=(8, 5))
+for _, row in plot_df.iterrows():
+    ax.plot(["Before", "After"], [row["Before"], row["After"]], marker="o", label=row["group"])
+
+ax.set_title("Average FTE Employment Before and After the 1992 Minimum Wage Increase")
+ax.set_ylabel("Average FTE employment")
+ax.legend(frameon=False)
+plt.show()
+```
+
+The figure highlights the same substantive point as the tables:
+
+- Pennsylvania stores lost workers over time.
+- New Jersey stores, on average, did not.
+- The strongest relative increase comes from the **low-wage New Jersey stores**, which were the stores most directly affected by the policy.
+
+That visual pattern supports the paper's interpretation that the minimum wage increase did not reduce employment in this setting.
+
+## Conclusion
+
+The results here line up closely with the original paper.
+
+I reproduced the main findings from Card and Krueger (1994) using only Python and the public fast-food survey data:
+
+- The descriptive means in **Table 2** match the paper closely.
+- The balanced-sample difference-in-differences estimate from **Table 3** is about **+2.75 FTE workers**, essentially identical to the paper's **+2.76**.
+- The regression estimate from **Table 4, column (i)** is **2.33** with a standard error of **1.19**, which matches the published result.
+
+Overall, the replicated evidence supports the paper's headline conclusion: **the 1992 New Jersey minimum wage increase did not reduce fast-food employment relative to Pennsylvania**.

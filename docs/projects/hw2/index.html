@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.13">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ebrahim Alhaddad">
+<meta name="dcterms.date" content="2026-04-22">
+
+<title>Replication of Card and Krueger (1994) – Ebrahim’s Website</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ac077c1e730dfeb5e42400639d17284e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-610593e65a40a0629ca575dfc540a55b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Ebrahim’s Website</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.html"> 
+<span class="menu-text">Resume</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#main-analysis" id="toc-main-analysis" class="nav-link" data-scroll-target="#main-analysis"><span class="header-section-number">2</span> Main Analysis</a>
+  <ul class="collapse">
+  <li><a href="#load-and-prepare-the-data" id="toc-load-and-prepare-the-data" class="nav-link" data-scroll-target="#load-and-prepare-the-data"><span class="header-section-number">2.1</span> Load and prepare the data</a></li>
+  <li><a href="#replicating-table-2" id="toc-replicating-table-2" class="nav-link" data-scroll-target="#replicating-table-2"><span class="header-section-number">2.2</span> Replicating Table 2</a></li>
+  <li><a href="#replicating-table-3-the-key-difference-in-differences-result" id="toc-replicating-table-3-the-key-difference-in-differences-result" class="nav-link" data-scroll-target="#replicating-table-3-the-key-difference-in-differences-result"><span class="header-section-number">2.3</span> Replicating Table 3: the key difference-in-differences result</a></li>
+  <li><a href="#replicating-table-4-column-i" id="toc-replicating-table-4-column-i" class="nav-link" data-scroll-target="#replicating-table-4-column-i"><span class="header-section-number">2.4</span> Replicating Table 4, column (i)</a></li>
+  </ul></li>
+  <li><a href="#something-additional" id="toc-something-additional" class="nav-link" data-scroll-target="#something-additional"><span class="header-section-number">3</span> Something Additional</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">4</span> Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Replication of Card and Krueger (1994)</h1>
+<p class="subtitle lead">Minimum Wages and Employment: A Case Study of the Fast-Food Industry in New Jersey and Pennsylvania</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Ebrahim Alhaddad </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 22, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>In this post I replicate core results from Card and Krueger (1994), a classic paper in empirical economics. The paper studies the effect of New Jersey’s April 1992 minimum wage increase from $4.25 to $5.05 per hour on employment in fast-food restaurants. The authors compare restaurants in New Jersey, which received the policy change, to restaurants in eastern Pennsylvania, where the minimum wage did not change. This gives a natural <strong>difference-in-differences</strong> design.</p>
+<p>The paper focuses on a simple question: <strong>did the higher minimum wage reduce employment?</strong> Under the standard competitive model, the answer should be yes. But Card and Krueger find no evidence of job loss. In fact, their data suggest that employment in New Jersey rose relative to Pennsylvania.</p>
+<p>For this assignment I do three things:</p>
+<ol type="1">
+<li>Replicate the key descriptive comparison in <strong>Table 2</strong>.</li>
+<li>Replicate the core difference-in-differences result from <strong>Table 3</strong> and the basic regression from <strong>Table 4, column (i)</strong>.</li>
+<li>Add one extra piece of analysis by graphing the before/after employment patterns that the paper mostly presents in table form.</li>
+</ol>
+</section>
+<section id="main-analysis" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="main-analysis"><span class="header-section-number">2</span> Main Analysis</h2>
+<section id="load-and-prepare-the-data" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="load-and-prepare-the-data"><span class="header-section-number">2.1</span> Load and prepare the data</h3>
+<p>The public data are stored in a fixed-width ASCII file (<code>public.dat</code>). I use the codebook and the original SAS checking program to reconstruct the variables used in the paper, including:</p>
+<ul>
+<li><strong>FTE employment</strong> = full-time employees + managers + 0.5 × part-time employees</li>
+<li><strong>gap</strong> = proportional wage increase needed to reach the new minimum wage in New Jersey</li>
+<li><strong>pmeal</strong> = price of a full meal = soda + fries + entree</li>
+<li>indicators for chain type and New Jersey vs.&nbsp;Pennsylvania</li>
+</ul>
+<div id="2ace14ab" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> ttest_ind</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Fixed-width layout from the codebook</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>colspecs <span class="op">=</span> [</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">0</span>,<span class="dv">3</span>),(<span class="dv">4</span>,<span class="dv">5</span>),(<span class="dv">6</span>,<span class="dv">7</span>),(<span class="dv">8</span>,<span class="dv">9</span>),(<span class="dv">10</span>,<span class="dv">11</span>),(<span class="dv">12</span>,<span class="dv">13</span>),(<span class="dv">14</span>,<span class="dv">15</span>),(<span class="dv">16</span>,<span class="dv">17</span>),(<span class="dv">18</span>,<span class="dv">19</span>),(<span class="dv">20</span>,<span class="dv">21</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">22</span>,<span class="dv">24</span>),(<span class="dv">25</span>,<span class="dv">30</span>),(<span class="dv">31</span>,<span class="dv">36</span>),(<span class="dv">37</span>,<span class="dv">42</span>),(<span class="dv">43</span>,<span class="dv">48</span>),(<span class="dv">49</span>,<span class="dv">54</span>),(<span class="dv">55</span>,<span class="dv">60</span>),(<span class="dv">61</span>,<span class="dv">62</span>),(<span class="dv">63</span>,<span class="dv">68</span>),(<span class="dv">69</span>,<span class="dv">70</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">71</span>,<span class="dv">76</span>),(<span class="dv">77</span>,<span class="dv">82</span>),(<span class="dv">83</span>,<span class="dv">88</span>),(<span class="dv">89</span>,<span class="dv">94</span>),(<span class="dv">95</span>,<span class="dv">100</span>),(<span class="dv">101</span>,<span class="dv">103</span>),(<span class="dv">104</span>,<span class="dv">106</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">107</span>,<span class="dv">108</span>),(<span class="dv">109</span>,<span class="dv">110</span>),(<span class="dv">111</span>,<span class="dv">117</span>),(<span class="dv">118</span>,<span class="dv">120</span>),(<span class="dv">121</span>,<span class="dv">126</span>),(<span class="dv">127</span>,<span class="dv">132</span>),(<span class="dv">133</span>,<span class="dv">138</span>),(<span class="dv">139</span>,<span class="dv">144</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">145</span>,<span class="dv">150</span>),(<span class="dv">151</span>,<span class="dv">156</span>),(<span class="dv">157</span>,<span class="dv">158</span>),(<span class="dv">159</span>,<span class="dv">160</span>),(<span class="dv">161</span>,<span class="dv">166</span>),(<span class="dv">167</span>,<span class="dv">172</span>),(<span class="dv">173</span>,<span class="dv">178</span>),(<span class="dv">179</span>,<span class="dv">184</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">185</span>,<span class="dv">190</span>),(<span class="dv">191</span>,<span class="dv">193</span>),(<span class="dv">194</span>,<span class="dv">196</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sheet"</span>,<span class="st">"chain"</span>,<span class="st">"co_owned"</span>,<span class="st">"state"</span>,<span class="st">"southj"</span>,<span class="st">"centralj"</span>,<span class="st">"northj"</span>,<span class="st">"pa1"</span>,<span class="st">"pa2"</span>,<span class="st">"shore"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ncalls"</span>,<span class="st">"empft"</span>,<span class="st">"emppt"</span>,<span class="st">"nmgrs"</span>,<span class="st">"wage_st"</span>,<span class="st">"inctime"</span>,<span class="st">"firstinc"</span>,<span class="st">"bonus"</span>,<span class="st">"pctaff"</span>,<span class="st">"meals"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"open"</span>,<span class="st">"hrsopen"</span>,<span class="st">"psoda"</span>,<span class="st">"pfry"</span>,<span class="st">"pentree"</span>,<span class="st">"nregs"</span>,<span class="st">"nregs11"</span>,<span class="st">"type2"</span>,<span class="st">"status2"</span>,<span class="st">"date2"</span>,<span class="st">"ncalls2"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"empft2"</span>,<span class="st">"emppt2"</span>,<span class="st">"nmgrs2"</span>,<span class="st">"wage_st2"</span>,<span class="st">"inctime2"</span>,<span class="st">"firstin2"</span>,<span class="st">"special2"</span>,<span class="st">"meals2"</span>,<span class="st">"open2r"</span>,<span class="st">"hrsopen2"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"psoda2"</span>,<span class="st">"pfry2"</span>,<span class="st">"pentree2"</span>,<span class="st">"nregs2"</span>,<span class="st">"nregs112"</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the public data file</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>raw <span class="op">=</span> pd.read_fwf(<span class="st">"public.dat"</span>, colspecs<span class="op">=</span>colspecs, names<span class="op">=</span>names)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert any non-numeric placeholders such as '.' to NaN</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> raw.columns:</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> raw[c].dtype <span class="op">==</span> <span class="bu">object</span>:</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        raw[c] <span class="op">=</span> pd.to_numeric(raw[c], errors<span class="op">=</span><span class="st">"coerce"</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> raw.copy()</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct variables used in the paper / SAS check file</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Full-time-equivalent employment</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"emptot"</span>] <span class="op">=</span> df[<span class="st">"empft"</span>] <span class="op">+</span> df[<span class="st">"nmgrs"</span>] <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> df[<span class="st">"emppt"</span>]</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"emptot2"</span>] <span class="op">=</span> df[<span class="st">"empft2"</span>] <span class="op">+</span> df[<span class="st">"nmgrs2"</span>] <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> df[<span class="st">"emppt2"</span>]</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"demp"</span>] <span class="op">=</span> df[<span class="st">"emptot2"</span>] <span class="op">-</span> df[<span class="st">"emptot"</span>]</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"gap"</span>] <span class="op">=</span> np.where(</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    df[<span class="st">"state"</span>] <span class="op">==</span> <span class="dv">0</span>,</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    np.where(</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        df[<span class="st">"wage_st"</span>] <span class="op">&gt;=</span> <span class="fl">5.05</span>,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span>,</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>        np.where(df[<span class="st">"wage_st"</span>] <span class="op">&gt;</span> <span class="dv">0</span>, (<span class="fl">5.05</span> <span class="op">-</span> df[<span class="st">"wage_st"</span>]) <span class="op">/</span> df[<span class="st">"wage_st"</span>], np.nan)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co"># State and chain indicators</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"nj"</span>] <span class="op">=</span> df[<span class="st">"state"</span>]</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"bk"</span>] <span class="op">=</span> (df[<span class="st">"chain"</span>] <span class="op">==</span> <span class="dv">1</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"kfc"</span>] <span class="op">=</span> (df[<span class="st">"chain"</span>] <span class="op">==</span> <span class="dv">2</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"roys"</span>] <span class="op">=</span> (df[<span class="st">"chain"</span>] <span class="op">==</span> <span class="dv">3</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"wendys"</span>] <span class="op">=</span> (df[<span class="st">"chain"</span>] <span class="op">==</span> <span class="dv">4</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Other variables used in tables</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"pmeal"</span>] <span class="op">=</span> df[<span class="st">"psoda"</span>] <span class="op">+</span> df[<span class="st">"pfry"</span>] <span class="op">+</span> df[<span class="st">"pentree"</span>]</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"pmeal2"</span>] <span class="op">=</span> df[<span class="st">"psoda2"</span>] <span class="op">+</span> df[<span class="st">"pfry2"</span>] <span class="op">+</span> df[<span class="st">"pentree2"</span>]</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"fracft"</span>] <span class="op">=</span> df[<span class="st">"empft"</span>] <span class="op">/</span> df[<span class="st">"emptot"</span>]</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"fracft2"</span>] <span class="op">=</span> np.where(df[<span class="st">"emptot2"</span>] <span class="op">&gt;</span> <span class="dv">0</span>, df[<span class="st">"empft2"</span>] <span class="op">/</span> df[<span class="st">"emptot2"</span>], np.nan)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"atmin"</span>] <span class="op">=</span> (df[<span class="st">"wage_st"</span>] <span class="op">==</span> <span class="fl">4.25</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"newmin"</span>] <span class="op">=</span> (df[<span class="st">"wage_st2"</span>] <span class="op">==</span> <span class="fl">5.05</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"closed"</span>] <span class="op">=</span> (df[<span class="st">"status2"</span>] <span class="op">==</span> <span class="dv">3</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="co"># The paper treats the four temporarily closed stores as zero only in one row of Table 3.</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="co"># These statuses correspond to renovation / temporary closures / fire / construction.</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>TEMP_CLOSED <span class="op">=</span> {<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>}</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"emptot2_zero_temp"</span>] <span class="op">=</span> df[<span class="st">"emptot2"</span>]</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>df.loc[df[<span class="st">"status2"</span>].isin(TEMP_CLOSED), <span class="st">"emptot2_zero_temp"</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"demp_zero_temp"</span>] <span class="op">=</span> df[<span class="st">"emptot2_zero_temp"</span>] <span class="op">-</span> df[<span class="st">"emptot"</span>]</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Samples used below</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>balanced <span class="op">=</span> df[df[<span class="st">"demp"</span>].notna()].copy()</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>row5_sample <span class="op">=</span> df[(df[<span class="st">"demp"</span>].notna()) <span class="op">|</span> (df[<span class="st">"status2"</span>].isin(TEMP_CLOSED) <span class="op">&amp;</span> df[<span class="st">"emptot"</span>].notna())].copy()</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mean_se(x):</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> pd.to_numeric(x, errors<span class="op">=</span><span class="st">"coerce"</span>).dropna()</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.Series({<span class="st">"mean"</span>: x.mean(), <span class="st">"se"</span>: x.std(ddof<span class="op">=</span><span class="dv">1</span>) <span class="op">/</span> np.sqrt(<span class="bu">len</span>(x)), <span class="st">"n"</span>: <span class="bu">len</span>(x)})</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Observations in public data: </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Observations in public data: 410</code></pre>
+</div>
+</div>
+</section>
+<section id="replicating-table-2" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="replicating-table-2"><span class="header-section-number">2.2</span> Replicating Table 2</h3>
+<p>Table 2 compares New Jersey and Pennsylvania stores before and after the policy change. My replicated means line up closely with the paper. The two most important patterns are the same as in the published table:</p>
+<ul>
+<li>In <strong>wave 1</strong>, average FTE employment is lower in New Jersey than in Pennsylvania (about <strong>20.44 vs.&nbsp;23.33</strong>).</li>
+<li>In <strong>wave 2</strong>, New Jersey’s average starting wage rises sharply to about <strong>5.08</strong>, while Pennsylvania stays near <strong>4.62</strong>.</li>
+</ul>
+<div id="55a48d1d" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> t_stat(var):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    nj <span class="op">=</span> df.loc[df[<span class="st">"nj"</span>] <span class="op">==</span> <span class="dv">1</span>, var].dropna()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    pa <span class="op">=</span> df.loc[df[<span class="st">"nj"</span>] <span class="op">==</span> <span class="dv">0</span>, var].dropna()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ttest_ind(nj, pa, equal_var<span class="op">=</span><span class="va">True</span>, nan_policy<span class="op">=</span><span class="st">"omit"</span>).statistic</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> [</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Burger King share"</span>, <span class="st">"bk"</span>),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"KFC share"</span>, <span class="st">"kfc"</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Roy Rogers share"</span>, <span class="st">"roys"</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Wendy's share"</span>, <span class="st">"wendys"</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Company-owned share"</span>, <span class="st">"co_owned"</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"FTE employment, wave 1"</span>, <span class="st">"emptot"</span>),</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Share full-time, wave 1"</span>, <span class="st">"fracft"</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Starting wage, wave 1"</span>, <span class="st">"wage_st"</span>),</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Wage = $4.25, wave 1"</span>, <span class="st">"atmin"</span>),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Price of full meal, wave 1"</span>, <span class="st">"pmeal"</span>),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Hours open, wave 1"</span>, <span class="st">"hrsopen"</span>),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Recruiting bonus, wave 1"</span>, <span class="st">"bonus"</span>),</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"FTE employment, wave 2"</span>, <span class="st">"emptot2"</span>),</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Share full-time, wave 2"</span>, <span class="st">"fracft2"</span>),</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Starting wage, wave 2"</span>, <span class="st">"wage_st2"</span>),</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Wage = $5.05, wave 2"</span>, <span class="st">"newmin"</span>),</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Price of full meal, wave 2"</span>, <span class="st">"pmeal2"</span>),</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Hours open, wave 2"</span>, <span class="st">"hrsopen2"</span>),</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"Recruiting bonus, wave 2"</span>, <span class="st">"special2"</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>table2 <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Variable"</span>: [r[<span class="dv">0</span>] <span class="cf">for</span> r <span class="kw">in</span> rows],</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NJ"</span>: [df.loc[df[<span class="st">"nj"</span>] <span class="op">==</span> <span class="dv">1</span>, r[<span class="dv">1</span>]].mean() <span class="cf">for</span> r <span class="kw">in</span> rows],</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PA"</span>: [df.loc[df[<span class="st">"nj"</span>] <span class="op">==</span> <span class="dv">0</span>, r[<span class="dv">1</span>]].mean() <span class="cf">for</span> r <span class="kw">in</span> rows],</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"t statistic"</span>: [t_stat(r[<span class="dv">1</span>]) <span class="cf">for</span> r <span class="kw">in</span> rows]</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>table2.<span class="bu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Variable</th>
+<th data-quarto-table-cell-role="th">NJ</th>
+<th data-quarto-table-cell-role="th">PA</th>
+<th data-quarto-table-cell-role="th">t statistic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Burger King share</td>
+<td>0.41</td>
+<td>0.44</td>
+<td>-0.52</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>KFC share</td>
+<td>0.21</td>
+<td>0.15</td>
+<td>1.08</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Roy Rogers share</td>
+<td>0.25</td>
+<td>0.22</td>
+<td>0.61</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Wendy's share</td>
+<td>0.14</td>
+<td>0.19</td>
+<td>-1.22</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Company-owned share</td>
+<td>0.34</td>
+<td>0.35</td>
+<td>-0.22</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>FTE employment, wave 1</td>
+<td>20.44</td>
+<td>23.33</td>
+<td>-2.35</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>Share full-time, wave 1</td>
+<td>0.33</td>
+<td>0.35</td>
+<td>-0.73</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>Starting wage, wave 1</td>
+<td>4.61</td>
+<td>4.63</td>
+<td>-0.41</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>Wage = $4.25, wave 1</td>
+<td>0.31</td>
+<td>0.33</td>
+<td>-0.41</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>Price of full meal, wave 1</td>
+<td>3.35</td>
+<td>3.04</td>
+<td>3.79</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">10</th>
+<td>Hours open, wave 1</td>
+<td>14.42</td>
+<td>14.53</td>
+<td>-0.30</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">11</th>
+<td>Recruiting bonus, wave 1</td>
+<td>0.24</td>
+<td>0.29</td>
+<td>-1.03</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">12</th>
+<td>FTE employment, wave 2</td>
+<td>21.03</td>
+<td>21.17</td>
+<td>-0.12</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">13</th>
+<td>Share full-time, wave 2</td>
+<td>0.36</td>
+<td>0.30</td>
+<td>1.75</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">14</th>
+<td>Starting wage, wave 2</td>
+<td>5.08</td>
+<td>4.62</td>
+<td>19.71</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">15</th>
+<td>Wage = $5.05, wave 2</td>
+<td>0.85</td>
+<td>0.01</td>
+<td>20.96</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">16</th>
+<td>Price of full meal, wave 2</td>
+<td>3.41</td>
+<td>3.03</td>
+<td>4.73</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">17</th>
+<td>Hours open, wave 2</td>
+<td>14.42</td>
+<td>14.65</td>
+<td>-0.67</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">18</th>
+<td>Recruiting bonus, wave 2</td>
+<td>0.20</td>
+<td>0.23</td>
+<td>-0.59</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>A nice check is that these replicated values are very close to the published Table 2 values. For example, the paper reports approximately <strong>20.4 vs.&nbsp;23.3</strong> for wave-1 employment and <strong>5.08 vs.&nbsp;4.62</strong> for wave-2 starting wages, which is exactly what I obtain up to rounding.</p>
+</section>
+<section id="replicating-table-3-the-key-difference-in-differences-result" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="replicating-table-3-the-key-difference-in-differences-result"><span class="header-section-number">2.3</span> Replicating Table 3: the key difference-in-differences result</h3>
+<p>Table 3 is the heart of the paper. The key row is the <strong>balanced sample</strong> comparison, where employment is observed in both periods.</p>
+<p>The difference-in-differences estimate is:</p>
+<p>[ (Employment_{NJ}) - (Employment_{PA}) ]</p>
+<p>Using the balanced sample, I get:</p>
+<ul>
+<li><strong>Pennsylvania change:</strong> (-2.28) FTE workers</li>
+<li><strong>New Jersey change:</strong> (+0.47) FTE workers</li>
+<li><strong>Difference-in-differences:</strong> <strong>(+2.75)</strong> FTE workers</li>
+</ul>
+<p>This essentially matches the paper’s reported <strong>+2.76</strong> result.</p>
+<div id="e2cee43d" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pa <span class="op">=</span> df[df[<span class="st">"nj"</span>] <span class="op">==</span> <span class="dv">0</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>nj <span class="op">=</span> df[df[<span class="st">"nj"</span>] <span class="op">==</span> <span class="dv">1</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>low <span class="op">=</span> df[(df[<span class="st">"nj"</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (df[<span class="st">"wage_st"</span>] <span class="op">==</span> <span class="fl">4.25</span>)]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>mid <span class="op">=</span> df[(df[<span class="st">"nj"</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (df[<span class="st">"wage_st"</span>] <span class="op">&gt;</span> <span class="fl">4.25</span>) <span class="op">&amp;</span> (df[<span class="st">"wage_st"</span>] <span class="op">&lt;</span> <span class="fl">5.00</span>)]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>high <span class="op">=</span> df[(df[<span class="st">"nj"</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">&amp;</span> (df[<span class="st">"wage_st"</span>] <span class="op">&gt;=</span> <span class="fl">5.00</span>)]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> {</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PA"</span>: pa,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"NJ"</span>: nj,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Low wage NJ"</span>: low,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mid wage NJ"</span>: mid,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"High wage NJ"</span>: high,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> summary_for_group(g):</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    before <span class="op">=</span> g[<span class="st">"emptot"</span>].mean()</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    after <span class="op">=</span> g[<span class="st">"emptot2"</span>].mean()</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    change_means <span class="op">=</span> after <span class="op">-</span> before</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    change_bal <span class="op">=</span> balanced.loc[g.index.intersection(balanced.index), <span class="st">"demp"</span>].mean()</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    change_bal_zero <span class="op">=</span> row5_sample.loc[g.index.intersection(row5_sample.index), <span class="st">"demp_zero_temp"</span>].mean()</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> before, after, change_means, change_bal, change_bal_zero</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> {name: summary_for_group(g) <span class="cf">for</span> name, g <span class="kw">in</span> groups.items()}</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>rep_table3 <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Variable"</span>: [</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"FTE employment before (all available)"</span>,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"FTE employment after (all available)"</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Change in mean FTE employment (all available means)"</span>,</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Change in mean FTE employment (balanced sample)"</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Change in mean FTE employment (balanced, temp. closed = 0)"</span>,</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> groups:</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    rep_table3[name] <span class="op">=</span> summary[name]</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>rep_table3[<span class="st">"NJ - PA"</span>] <span class="op">=</span> rep_table3[<span class="st">"NJ"</span>] <span class="op">-</span> rep_table3[<span class="st">"PA"</span>]</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>rep_table3[<span class="st">"Low - High"</span>] <span class="op">=</span> [np.nan, np.nan, np.nan,</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>                             rep_table3.loc[<span class="dv">3</span>, <span class="st">"Low wage NJ"</span>] <span class="op">-</span> rep_table3.loc[<span class="dv">3</span>, <span class="st">"High wage NJ"</span>],</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>                             rep_table3.loc[<span class="dv">4</span>, <span class="st">"Low wage NJ"</span>] <span class="op">-</span> rep_table3.loc[<span class="dv">4</span>, <span class="st">"High wage NJ"</span>]]</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>rep_table3[<span class="st">"Mid - High"</span>] <span class="op">=</span> [np.nan, np.nan, np.nan,</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>                             rep_table3.loc[<span class="dv">3</span>, <span class="st">"Mid wage NJ"</span>] <span class="op">-</span> rep_table3.loc[<span class="dv">3</span>, <span class="st">"High wage NJ"</span>],</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>                             rep_table3.loc[<span class="dv">4</span>, <span class="st">"Mid wage NJ"</span>] <span class="op">-</span> rep_table3.loc[<span class="dv">4</span>, <span class="st">"High wage NJ"</span>]]</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>rep_table3.<span class="bu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Variable</th>
+<th data-quarto-table-cell-role="th">PA</th>
+<th data-quarto-table-cell-role="th">NJ</th>
+<th data-quarto-table-cell-role="th">Low wage NJ</th>
+<th data-quarto-table-cell-role="th">Mid wage NJ</th>
+<th data-quarto-table-cell-role="th">High wage NJ</th>
+<th data-quarto-table-cell-role="th">NJ - PA</th>
+<th data-quarto-table-cell-role="th">Low - High</th>
+<th data-quarto-table-cell-role="th">Mid - High</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>FTE employment before (all available)</td>
+<td>23.33</td>
+<td>20.44</td>
+<td>19.56</td>
+<td>20.08</td>
+<td>22.25</td>
+<td>-2.89</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>FTE employment after (all available)</td>
+<td>21.17</td>
+<td>21.03</td>
+<td>20.88</td>
+<td>20.96</td>
+<td>20.21</td>
+<td>-0.14</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Change in mean FTE employment (all available m...</td>
+<td>-2.17</td>
+<td>0.59</td>
+<td>1.32</td>
+<td>0.87</td>
+<td>-2.04</td>
+<td>2.75</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>Change in mean FTE employment (balanced sample)</td>
+<td>-2.28</td>
+<td>0.47</td>
+<td>1.20</td>
+<td>0.71</td>
+<td>-2.16</td>
+<td>2.75</td>
+<td>3.36</td>
+<td>2.87</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Change in mean FTE employment (balanced, temp....</td>
+<td>-2.28</td>
+<td>0.23</td>
+<td>0.90</td>
+<td>0.49</td>
+<td>-2.39</td>
+<td>2.51</td>
+<td>3.29</td>
+<td>2.88</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The main conclusion from this table is the same as the paper’s conclusion: employment did <strong>not</strong> fall in New Jersey relative to Pennsylvania after the minimum wage increase. If anything, it rose.</p>
+</section>
+<section id="replicating-table-4-column-i" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="replicating-table-4-column-i"><span class="header-section-number">2.4</span> Replicating Table 4, column (i)</h3>
+<p>Table 4 turns the simple comparison into a regression. The required replication is <strong>column (i)</strong>, where the dependent variable is the change in FTE employment and the key regressor is a New Jersey dummy.</p>
+<p>Following the paper, I restrict to the subset of stores with available employment and wage data in both waves (or stores that closed in wave 2). This yields the same sample size as the paper: <strong>357 stores</strong>.</p>
+<div id="da8961b1" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same sample restriction as the SAS check program / Table 4</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>reg_sample <span class="op">=</span> df[df[<span class="st">"demp"</span>].notna() <span class="op">&amp;</span> ((df[<span class="st">"closed"</span>] <span class="op">==</span> <span class="dv">1</span>) <span class="op">|</span> (df[<span class="st">"wage_st2"</span>] <span class="op">-</span> df[<span class="st">"wage_st"</span>]).notna())].copy()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> smf.ols(<span class="st">"demp ~ nj"</span>, data<span class="op">=</span>reg_sample).fit()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> smf.ols(<span class="st">"demp ~ nj + bk + kfc + roys + co_owned"</span>, data<span class="op">=</span>reg_sample).fit()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>m3 <span class="op">=</span> smf.ols(<span class="st">"demp ~ gap"</span>, data<span class="op">=</span>reg_sample).fit()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>m4 <span class="op">=</span> smf.ols(<span class="st">"demp ~ gap + bk + kfc + roys + co_owned"</span>, data<span class="op">=</span>reg_sample).fit()</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>m5 <span class="op">=</span> smf.ols(<span class="st">"demp ~ gap + bk + kfc + roys + centralj + southj + pa1 + pa2"</span>, data<span class="op">=</span>reg_sample).fit()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>reg_table <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Model"</span>: [<span class="st">"(i)"</span>, <span class="st">"(ii)"</span>, <span class="st">"(iii)"</span>, <span class="st">"(iv)"</span>, <span class="st">"(v)"</span>],</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Treatment variable"</span>: [<span class="st">"NJ dummy"</span>, <span class="st">"NJ dummy"</span>, <span class="st">"Initial wage gap"</span>, <span class="st">"Initial wage gap"</span>, <span class="st">"Initial wage gap"</span>],</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Coefficient"</span>: [m1.params[<span class="st">"nj"</span>], m2.params[<span class="st">"nj"</span>], m3.params[<span class="st">"gap"</span>], m4.params[<span class="st">"gap"</span>], m5.params[<span class="st">"gap"</span>]],</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Std. Error"</span>: [m1.bse[<span class="st">"nj"</span>], m2.bse[<span class="st">"nj"</span>], m3.bse[<span class="st">"gap"</span>], m4.bse[<span class="st">"gap"</span>], m5.bse[<span class="st">"gap"</span>]],</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Chain/ownership controls"</span>: [<span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span>, <span class="st">"Yes"</span>, <span class="st">"Yes"</span>],</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Region controls"</span>: [<span class="st">"No"</span>, <span class="st">"No"</span>, <span class="st">"No"</span>, <span class="st">"No"</span>, <span class="st">"Yes"</span>],</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"SER"</span>: [np.sqrt(m1.scale), np.sqrt(m2.scale), np.sqrt(m3.scale), np.sqrt(m4.scale), np.sqrt(m5.scale)],</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>reg_table.<span class="bu">round</span>(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Model</th>
+<th data-quarto-table-cell-role="th">Treatment variable</th>
+<th data-quarto-table-cell-role="th">Coefficient</th>
+<th data-quarto-table-cell-role="th">Std. Error</th>
+<th data-quarto-table-cell-role="th">Chain/ownership controls</th>
+<th data-quarto-table-cell-role="th">Region controls</th>
+<th data-quarto-table-cell-role="th">SER</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>(i)</td>
+<td>NJ dummy</td>
+<td>2.33</td>
+<td>1.19</td>
+<td>No</td>
+<td>No</td>
+<td>8.79</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>(ii)</td>
+<td>NJ dummy</td>
+<td>2.30</td>
+<td>1.20</td>
+<td>Yes</td>
+<td>No</td>
+<td>8.78</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>(iii)</td>
+<td>Initial wage gap</td>
+<td>15.65</td>
+<td>6.08</td>
+<td>No</td>
+<td>No</td>
+<td>8.76</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>(iv)</td>
+<td>Initial wage gap</td>
+<td>14.92</td>
+<td>6.21</td>
+<td>Yes</td>
+<td>No</td>
+<td>8.76</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>(v)</td>
+<td>Initial wage gap</td>
+<td>11.91</td>
+<td>7.39</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>8.74</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>My replication of <strong>Table 4, column (i)</strong> is:</p>
+<ul>
+<li><strong>Coefficient on New Jersey dummy:</strong> <strong>2.33</strong></li>
+<li><strong>Standard error:</strong> <strong>1.19</strong></li>
+</ul>
+<p>This matches the published table essentially exactly. The interpretation is that employment growth in New Jersey was about <strong>2.33 FTE workers higher</strong> than in Pennsylvania in the restricted regression sample.</p>
+<p>So the main result in the paper shows up clearly in these estimates.</p>
+</section>
+</section>
+<section id="something-additional" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="something-additional"><span class="header-section-number">3</span> Something Additional</h2>
+<p>For my additional analysis, I turn the paper’s table-based comparison into a picture. The paper discusses these patterns in Table 3, but a graph makes the result much easier to see.</p>
+<p>I plot average FTE employment before and after the policy for four groups:</p>
+<ul>
+<li>Pennsylvania stores</li>
+<li>all New Jersey stores</li>
+<li>low-wage New Jersey stores</li>
+<li>high-wage New Jersey stores</li>
+</ul>
+<div id="1a2477e3" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plot_df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"group"</span>: [<span class="st">"Pennsylvania"</span>, <span class="st">"New Jersey"</span>, <span class="st">"NJ low wage"</span>, <span class="st">"NJ high wage"</span>],</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Before"</span>: [pa[<span class="st">"emptot"</span>].mean(), nj[<span class="st">"emptot"</span>].mean(), low[<span class="st">"emptot"</span>].mean(), high[<span class="st">"emptot"</span>].mean()],</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"After"</span>: [pa[<span class="st">"emptot2"</span>].mean(), nj[<span class="st">"emptot2"</span>].mean(), low[<span class="st">"emptot2"</span>].mean(), high[<span class="st">"emptot2"</span>].mean()],</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _, row <span class="kw">in</span> plot_df.iterrows():</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    ax.plot([<span class="st">"Before"</span>, <span class="st">"After"</span>], [row[<span class="st">"Before"</span>], row[<span class="st">"After"</span>]], marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span>row[<span class="st">"group"</span>])</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Average FTE Employment Before and After the 1992 Minimum Wage Increase"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Average FTE employment"</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>ax.legend(frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-6-output-1.png" width="685" height="431" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The figure highlights the same substantive point as the tables:</p>
+<ul>
+<li>Pennsylvania stores lost workers over time.</li>
+<li>New Jersey stores, on average, did not.</li>
+<li>The strongest relative increase comes from the <strong>low-wage New Jersey stores</strong>, which were the stores most directly affected by the policy.</li>
+</ul>
+<p>That visual pattern supports the paper’s interpretation that the minimum wage increase did not reduce employment in this setting.</p>
+</section>
+<section id="conclusion" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">4</span> Conclusion</h2>
+<p>The results here line up closely with the original paper.</p>
+<p>I reproduced the main findings from Card and Krueger (1994) using only Python and the public fast-food survey data:</p>
+<ul>
+<li>The descriptive means in <strong>Table 2</strong> match the paper closely.</li>
+<li>The balanced-sample difference-in-differences estimate from <strong>Table 3</strong> is about <strong>+2.75 FTE workers</strong>, essentially identical to the paper’s <strong>+2.76</strong>.</li>
+<li>The regression estimate from <strong>Table 4, column (i)</strong> is <strong>2.33</strong> with a standard error of <strong>1.19</strong>, which matches the published result.</li>
+</ul>
+<p>Overall, the replicated evidence supports the paper’s headline conclusion: <strong>the 1992 New Jersey minimum wage increase did not reduce fast-food employment relative to Pennsylvania</strong>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
