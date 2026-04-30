@@ -233,15 +233,27 @@ analytical_se = math.sqrt(
 ci_low = theta_hat - 1.96 * boot_se
 ci_high = theta_hat + 1.96 * boot_se
 
+pct_ci_low, pct_ci_high = np.quantile(boot_thetas, [0.025, 0.975])
+
 bootstrap_tbl = pl.DataFrame({
     "Quantity": [
         "Estimated effect",
         "Bootstrap standard error",
         "Analytical standard error",
-        "95% CI lower bound",
-        "95% CI upper bound"
+        "95% CI lower bound (normal approx.)",
+        "95% CI upper bound (normal approx.)",
+        "95% CI lower bound (percentile)",
+        "95% CI upper bound (percentile)"
     ],
-    "Value": [theta_hat, boot_se, analytical_se, ci_low, ci_high]
+    "Value": [
+        theta_hat,
+        boot_se,
+        analytical_se,
+        ci_low,
+        ci_high,
+        pct_ci_low,
+        pct_ci_high
+    ]
 })
 
 pretty_table(bootstrap_tbl, digits=4)
@@ -255,7 +267,7 @@ $$
 
 In this simulation, the bootstrapped standard error and the analytical standard error are very close, which is reassuring. That is exactly what I would hope to see: two different methods for measuring uncertainty arriving at nearly the same answer.
 
-Using the bootstrapped standard error, the 95% confidence interval for $\theta$ is reported above. Since the interval stays above zero in this run, the data suggest that CTA A likely outperforms CTA B. The effect is not just positive at the point estimate; the plausible range of values is positive as well.
+Using the bootstrap results, I report both a Normal-approximation interval and a percentile bootstrap interval. In this simulation, both intervals tell the same story: the plausible values of $\theta$ remain above zero. That suggests CTA A likely outperforms CTA B in this run, not just at the point estimate but across a reasonable range of uncertainty.
 
 ```{python}
 #| label: bootstrap-plot
@@ -383,7 +395,7 @@ hypothesis_tbl = pl.DataFrame({
 pretty_table(hypothesis_tbl, digits=4)
 ```
 
-The p-value is the probability of observing a test statistic at least this extreme if the null hypothesis were true. In this simulation, the p-value is small enough to reject $H_0$ at the 5% significance level. Interpreted plainly, the data provide evidence that the two CTAs do not perform equally, and the estimated difference favors CTA A.
+The p-value is the probability, under the null hypothesis, of observing a test statistic at least as extreme as the one in this sample.
 
 ## The T-Test as a Regression
 
@@ -523,7 +535,7 @@ peek_plot_df = pl.DataFrame({
 )
 ```
 
-The simulated false positive rate under repeated peeking is much higher than the nominal 5% rate from a single test. That means if I keep checking the results and stop as soon as I see significance, I dramatically increase my chance of falsely declaring a winner when the two CTAs are actually identical.
+The simulated false positive rate under repeated peeking is much higher than the nominal 5% rate from a single test. That means if I keep checking the results and stop as soon as I see significance, I increase the overall Type I error rate and become much more likely to falsely declare a winner when the two CTAs are actually identical.
 
 In practice, this is why sequential testing requires special methods or corrected stopping rules. Classical fixed-sample inference assumes the test plan is set in advance. Once that plan is violated by repeated peeking, the advertised error rate is no longer trustworthy.
 
@@ -531,4 +543,4 @@ In practice, this is why sequential testing requires special methods or correcte
 
 This simulated A/B test brings several core ideas from frequentist statistics into one concrete example. The LLN explains why estimates stabilize with more data. The bootstrap provides a practical way to estimate standard errors and confidence intervals. The CLT explains why Normal-based inference becomes reasonable in large samples. Hypothesis testing translates uncertainty into a formal decision rule. Regression reveals that the familiar difference-in-means test is part of a broader modeling framework. And the peeking simulation shows how easy it is to inflate false positives when experimental discipline breaks down.
 
-Most importantly, the assignment shows that A/B testing is not just a business tool. It is also a statistical problem. Randomized experiments produce noisy data, and frequentist methods give us a principled way to estimate treatment effects, quantify uncertainty, and avoid being fooled by random variation.
+Most importantly, this assignment shows that A/B testing is not just a business tool; it is also a statistical problem. Randomized experiments produce noisy data, and frequentist methods give us a principled way to estimate treatment effects, quantify uncertainty, and avoid being fooled by random variation. In a marketing setting, that matters because decisions about rollout, messaging, and resource allocation should depend not only on which version looks better in one sample, but also on how confident we are that the improvement is real.

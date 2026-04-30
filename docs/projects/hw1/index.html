@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ac077c1e730dfeb5e42400639d17284e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-610593e65a40a0629ca575dfc540a55b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-22dfe021b072f62df10a417ac9033384.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -422,18 +422,30 @@ window.Quarto = {
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ci_low <span class="op">=</span> theta_hat <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> boot_se</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ci_high <span class="op">=</span> theta_hat <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> boot_se</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>bootstrap_tbl <span class="op">=</span> pl.DataFrame({</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Quantity"</span>: [</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Estimated effect"</span>,</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Bootstrap standard error"</span>,</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Analytical standard error"</span>,</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"95% CI lower bound"</span>,</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"95% CI upper bound"</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Value"</span>: [theta_hat, boot_se, analytical_se, ci_low, ci_high]</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>pretty_table(bootstrap_tbl, digits<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>pct_ci_low, pct_ci_high <span class="op">=</span> np.quantile(boot_thetas, [<span class="fl">0.025</span>, <span class="fl">0.975</span>])</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>bootstrap_tbl <span class="op">=</span> pl.DataFrame({</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Quantity"</span>: [</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Estimated effect"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Bootstrap standard error"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Analytical standard error"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"95% CI lower bound (normal approx.)"</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>        <span class="st">"95% CI upper bound (normal approx.)"</span>,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">"95% CI lower bound (percentile)"</span>,</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">"95% CI upper bound (percentile)"</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Value"</span>: [</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        theta_hat,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        boot_se,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        analytical_se,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>        ci_low,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        ci_high,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        pct_ci_low,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        pct_ci_high</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>pretty_table(bootstrap_tbl, digits<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="bootstrap-code" class="cell-output cell-output-display">
 
     
@@ -458,12 +470,20 @@ window.Quarto = {
 <td>0.0183</td>
 </tr>
 <tr class="even">
-<td>95% CI lower bound</td>
+<td>95% CI lower bound (normal approx.)</td>
 <td>-0.0115</td>
 </tr>
 <tr class="odd">
-<td>95% CI upper bound</td>
+<td>95% CI upper bound (normal approx.)</td>
 <td>0.0615</td>
+</tr>
+<tr class="even">
+<td>95% CI lower bound (percentile)</td>
+<td>-0.0110</td>
+</tr>
+<tr class="odd">
+<td>95% CI upper bound (percentile)</td>
+<td>0.0600</td>
 </tr>
 </tbody>
 </table>
@@ -474,7 +494,7 @@ window.Quarto = {
 SE(\hat\theta) = \sqrt{\frac{\hat\pi_A(1 - \hat\pi_A)}{n_A} + \frac{\hat\pi_B(1 - \hat\pi_B)}{n_B}}.
 \]</span></p>
 <p>In this simulation, the bootstrapped standard error and the analytical standard error are very close, which is reassuring. That is exactly what I would hope to see: two different methods for measuring uncertainty arriving at nearly the same answer.</p>
-<p>Using the bootstrapped standard error, the 95% confidence interval for <span class="math inline">\(\theta\)</span> is reported above. Since the interval stays above zero in this run, the data suggest that CTA A likely outperforms CTA B. The effect is not just positive at the point estimate; the plausible range of values is positive as well.</p>
+<p>Using the bootstrap results, I report both a Normal-approximation interval and a percentile bootstrap interval. In this simulation, both intervals tell the same story: the plausible values of <span class="math inline">\(\theta\)</span> remain above zero. That suggests CTA A likely outperforms CTA B in this run, not just at the point estimate but across a reasonable range of uncertainty.</p>
 <div id="cell-bootstrap-plot" class="cell" data-fig-height="4.8" data-fig-width="7.5" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -633,7 +653,7 @@ z = \frac{\hat\theta - 0}{SE(\hat\theta)}.
 </table>
 </div>
 </div>
-<p>The p-value is the probability of observing a test statistic at least this extreme if the null hypothesis were true. In this simulation, the p-value is small enough to reject <span class="math inline">\(H_0\)</span> at the 5% significance level. Interpreted plainly, the data provide evidence that the two CTAs do not perform equally, and the estimated difference favors CTA A.</p>
+<p>The p-value is the probability, under the null hypothesis, of observing a test statistic at least as extreme as the one in this sample.</p>
 </section>
 <section id="the-t-test-as-a-regression" class="level2">
 <h2 class="anchored" data-anchor-id="the-t-test-as-a-regression">The T-Test as a Regression</h2>
@@ -829,13 +849,13 @@ Y_i = \beta_0 + \beta_1 D_i + \varepsilon_i.
 </div>
 </div>
 </div>
-<p>The simulated false positive rate under repeated peeking is much higher than the nominal 5% rate from a single test. That means if I keep checking the results and stop as soon as I see significance, I dramatically increase my chance of falsely declaring a winner when the two CTAs are actually identical.</p>
+<p>The simulated false positive rate under repeated peeking is much higher than the nominal 5% rate from a single test. That means if I keep checking the results and stop as soon as I see significance, I increase the overall Type I error rate and become much more likely to falsely declare a winner when the two CTAs are actually identical.</p>
 <p>In practice, this is why sequential testing requires special methods or corrected stopping rules. Classical fixed-sample inference assumes the test plan is set in advance. Once that plan is violated by repeated peeking, the advertised error rate is no longer trustworthy.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>This simulated A/B test brings several core ideas from frequentist statistics into one concrete example. The LLN explains why estimates stabilize with more data. The bootstrap provides a practical way to estimate standard errors and confidence intervals. The CLT explains why Normal-based inference becomes reasonable in large samples. Hypothesis testing translates uncertainty into a formal decision rule. Regression reveals that the familiar difference-in-means test is part of a broader modeling framework. And the peeking simulation shows how easy it is to inflate false positives when experimental discipline breaks down.</p>
-<p>Most importantly, the assignment shows that A/B testing is not just a business tool. It is also a statistical problem. Randomized experiments produce noisy data, and frequentist methods give us a principled way to estimate treatment effects, quantify uncertainty, and avoid being fooled by random variation.</p>
+<p>Most importantly, this assignment shows that A/B testing is not just a business tool; it is also a statistical problem. Randomized experiments produce noisy data, and frequentist methods give us a principled way to estimate treatment effects, quantify uncertainty, and avoid being fooled by random variation. In a marketing setting, that matters because decisions about rollout, messaging, and resource allocation should depend not only on which version looks better in one sample, but also on how confident we are that the improvement is real.</p>
 
 
 </section>
