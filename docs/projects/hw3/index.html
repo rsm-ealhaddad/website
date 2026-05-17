@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.13">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ebrahim Alhaddad">
+<meta name="dcterms.date" content="2026-05-16">
+
+<title>Poisson Regression and Maximum Likelihood Estimation – Ebrahim’s Website</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ac077c1e730dfeb5e42400639d17284e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-610593e65a40a0629ca575dfc540a55b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Ebrahim’s Website</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.html"> 
+<span class="menu-text">Resume</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#business-context" id="toc-business-context" class="nav-link" data-scroll-target="#business-context">Business context</a></li>
+  <li><a href="#goal-of-this-post" id="toc-goal-of-this-post" class="nav-link" data-scroll-target="#goal-of-this-post">Goal of this post</a></li>
+  <li><a href="#why-this-is-hard" id="toc-why-this-is-hard" class="nav-link" data-scroll-target="#why-this-is-hard">Why this is hard</a></li>
+  <li><a href="#available-data" id="toc-available-data" class="nav-link" data-scroll-target="#available-data">Available data</a></li>
+  <li><a href="#mle-roadmap" id="toc-mle-roadmap" class="nav-link" data-scroll-target="#mle-roadmap">MLE roadmap</a></li>
+  </ul></li>
+  <li><a href="#exploring-the-data" id="toc-exploring-the-data" class="nav-link" data-scroll-target="#exploring-the-data">Exploring the Data</a>
+  <ul class="collapse">
+  <li><a href="#exploration-summary" id="toc-exploration-summary" class="nav-link" data-scroll-target="#exploration-summary">Exploration summary</a></li>
+  </ul></li>
+  <li><a href="#a-simple-poisson-model-via-maximum-likelihood" id="toc-a-simple-poisson-model-via-maximum-likelihood" class="nav-link" data-scroll-target="#a-simple-poisson-model-via-maximum-likelihood">A Simple Poisson Model via Maximum Likelihood</a></li>
+  <li><a href="#poisson-regression" id="toc-poisson-regression" class="nav-link" data-scroll-target="#poisson-regression">Poisson Regression</a>
+  <ul class="collapse">
+  <li><a href="#why-the-exponential-shows-up" id="toc-why-the-exponential-shows-up" class="nav-link" data-scroll-target="#why-the-exponential-shows-up">Why the exponential shows up</a></li>
+  <li><a href="#how-to-read-the-regression-table" id="toc-how-to-read-the-regression-table" class="nav-link" data-scroll-target="#how-to-read-the-regression-table">How to read the regression table</a></li>
+  <li><a href="#main-regression-result" id="toc-main-regression-result" class="nav-link" data-scroll-target="#main-regression-result">Main regression result</a></li>
+  </ul></li>
+  <li><a href="#the-effect-of-blueprintys-software" id="toc-the-effect-of-blueprintys-software" class="nav-link" data-scroll-target="#the-effect-of-blueprintys-software">The Effect of Blueprinty’s Software</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#what-the-model-finds" id="toc-what-the-model-finds" class="nav-link" data-scroll-target="#what-the-model-finds">What the model finds</a></li>
+  <li><a href="#what-this-means-for-blueprinty" id="toc-what-this-means-for-blueprinty" class="nav-link" data-scroll-target="#what-this-means-for-blueprinty">What this means for Blueprinty</a></li>
+  <li><a href="#what-this-does-not-prove" id="toc-what-this-does-not-prove" class="nav-link" data-scroll-target="#what-this-does-not-prove">What this does not prove</a></li>
+  <li><a href="#final-takeaway" id="toc-final-takeaway" class="nav-link" data-scroll-target="#final-takeaway">Final takeaway</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Poisson Regression and Maximum Likelihood Estimation</h1>
+<p class="subtitle lead">A Case Study of Blueprinty’s Software and Patent Awards</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Ebrahim Alhaddad </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 16, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="business-context" class="level3">
+<h3 class="anchored" data-anchor-id="business-context">Business context</h3>
+<p>Blueprinty sells blueprint-development software to engineering firms preparing patent applications. The product story the company wants to test is simple: <strong>do Blueprinty customers receive more patents than similar non-customers?</strong></p>
+<p>That question matters for two reasons:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Business use</th>
+<th>Why this analysis helps</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Marketing claim</strong></td>
+<td>If customers receive more patents, Blueprinty can describe the product as connected to better patent outcomes.</td>
+</tr>
+<tr class="even">
+<td><strong>Product improvement</strong></td>
+<td>If the relationship is weak or concentrated in certain firm types, Blueprinty can learn where the product may need improvement or where it works best.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="goal-of-this-post" class="level3">
+<h3 class="anchored" data-anchor-id="goal-of-this-post">Goal of this post</h3>
+<p>The goal is to estimate the relationship between <strong>Blueprinty customer status</strong> and the <strong>number of patents awarded over the last five years</strong>. I use maximum likelihood estimation (MLE) to fit a Poisson regression model, then compare the by-hand MLE results with a standard GLM implementation.</p>
+<p>The practical question is:</p>
+<blockquote class="blockquote">
+<p>Holding firm age and region fixed, are Blueprinty customers predicted to receive more patents?</p>
+</blockquote>
+<p>This is a controlled association, not a clean causal experiment. Still, it is more useful than a raw customer-versus-non-customer comparison.</p>
+</section>
+<section id="why-this-is-hard" class="level3">
+<h3 class="anchored" data-anchor-id="why-this-is-hard">Why this is hard</h3>
+<p>The main issue is <strong>selection</strong>: Blueprinty customers are not randomly assigned to use the product. That creates a few problems:</p>
+<ul>
+<li><strong>Different firm types may choose Blueprinty.</strong> More sophisticated or better-funded firms may be more likely to buy the software.</li>
+<li><strong>Patent counts depend on firm maturity.</strong> Older firms may have more established R&amp;D and patent processes.</li>
+<li><strong>Patent counts may differ by region.</strong> Some regions may have more patent-heavy industries or stronger legal/IP ecosystems.</li>
+<li><strong>We only observe a snapshot.</strong> We do not see each firm before and after adopting Blueprinty.</li>
+<li><strong>Important variables are missing.</strong> The dataset does not include R&amp;D spending, legal budget, engineering headcount, patent strategy, or product pipeline quality.</li>
+</ul>
+<p>So the model can adjust for what we observe, but it cannot remove every possible source of bias.</p>
+</section>
+<section id="available-data" class="level3">
+<h3 class="anchored" data-anchor-id="available-data">Available data</h3>
+<p>The dataset contains <strong>1,500 mature engineering firms</strong>. For each firm, we observe:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>What it captures</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>patents</code></td>
+<td>Number of patents awarded over the last five years</td>
+<td>The outcome we want to explain</td>
+</tr>
+<tr class="even">
+<td><code>iscustomer</code></td>
+<td>Whether the firm is a Blueprinty customer</td>
+<td>The main variable of interest</td>
+</tr>
+<tr class="odd">
+<td><code>age</code></td>
+<td>Years since incorporation</td>
+<td>Older firms may patent differently than younger firms</td>
+</tr>
+<tr class="even">
+<td><code>region</code></td>
+<td>Firm location category</td>
+<td>Regional industry mix may affect patenting</td>
+</tr>
+</tbody>
+</table>
+<p>The data is useful, but not perfect. It tells us who is a customer and how many patents they received, but not <strong>why</strong> they became customers, how intensively they used the software, or whether their patenting trajectory changed after adoption.</p>
+</section>
+<section id="mle-roadmap" class="level3">
+<h3 class="anchored" data-anchor-id="mle-roadmap">MLE roadmap</h3>
+<p>I follow the same MLE recipe from class:</p>
+<ol type="1">
+<li>Specify a probability model for patent counts.</li>
+<li>Write the likelihood and log-likelihood.</li>
+<li>Maximize the log-likelihood numerically.</li>
+<li>Check the result against a built-in GLM.</li>
+<li>Translate the fitted model into a business interpretation.</li>
+</ol>
+</section>
+</section>
+<section id="exploring-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-the-data">Exploring the Data</h2>
+<div id="cell-read-data" class="cell" data-execution_count="2">
+<div id="read-data" class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<table id="T_5e60d" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_5e60d_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">customer_status</th>
+<th id="T_5e60d_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">firms</th>
+<th id="T_5e60d_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">mean_patents</th>
+<th id="T_5e60d_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">median_patents</th>
+<th id="T_5e60d_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">sd_patents</th>
+<th id="T_5e60d_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">mean_age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_5e60d_row0_col0" class="data row0 col0">Non-customer</td>
+<td id="T_5e60d_row0_col1" class="data row0 col1">1,019</td>
+<td id="T_5e60d_row0_col2" class="data row0 col2">3.47</td>
+<td id="T_5e60d_row0_col3" class="data row0 col3">3.0</td>
+<td id="T_5e60d_row0_col4" class="data row0 col4">2.23</td>
+<td id="T_5e60d_row0_col5" class="data row0 col5">26.1</td>
+</tr>
+<tr class="even">
+<td id="T_5e60d_row1_col0" class="data row1 col0">Customer</td>
+<td id="T_5e60d_row1_col1" class="data row1 col1">481</td>
+<td id="T_5e60d_row1_col2" class="data row1 col2">4.13</td>
+<td id="T_5e60d_row1_col3" class="data row1 col3">4.0</td>
+<td id="T_5e60d_row1_col4" class="data row1 col4">2.55</td>
+<td id="T_5e60d_row1_col5" class="data row1 col5">26.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The first table gives the raw comparison.</p>
+<p><strong>Quick read:</strong></p>
+<ul>
+<li>Customers average <strong>4.13 patents</strong> over five years.</li>
+<li>Non-customers average <strong>3.47 patents</strong> over five years.</li>
+<li>The raw gap is about <strong>0.66 patents</strong>.</li>
+<li>This is suggestive, but it is not enough to claim the software caused the difference. Customers and non-customers may differ in other ways.</li>
+</ul>
+<div id="cell-patents-histograms" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="patents-histograms" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/patents-histograms-output-1.png" width="950" height="375" class="figure-img"></p>
+<figcaption>Patent counts by Blueprinty customer status</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>What the histograms show:</strong></p>
+<ul>
+<li>The two groups overlap a lot. Many customers and non-customers have similar patent counts.</li>
+<li>The customer distribution is shifted slightly to the right.</li>
+<li>Customers appear more often in the <strong>4+ patent</strong> range.</li>
+<li>Non-customers are more concentrated around <strong>2-3 patents</strong>.</li>
+</ul>
+<p><strong>Takeaway:</strong> the raw data is consistent with the idea that customers patent more, but the plot still does not adjust for age, region, or other firm differences.</p>
+<div id="cell-region-table" class="cell" data-execution_count="4">
+<div id="region-table" class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<table id="T_bad9e" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_bad9e_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Region</th>
+<th id="T_bad9e_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Non-customer share</th>
+<th id="T_bad9e_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Customer share</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_bad9e_row0_col0" class="data row0 col0">Northeast</td>
+<td id="T_bad9e_row0_col1" class="data row0 col1">26.8%</td>
+<td id="T_bad9e_row0_col2" class="data row0 col2">68.2%</td>
+</tr>
+<tr class="even">
+<td id="T_bad9e_row1_col0" class="data row1 col0">Midwest</td>
+<td id="T_bad9e_row1_col1" class="data row1 col1">18.4%</td>
+<td id="T_bad9e_row1_col2" class="data row1 col2">7.7%</td>
+</tr>
+<tr class="odd">
+<td id="T_bad9e_row2_col0" class="data row2 col0">Northwest</td>
+<td id="T_bad9e_row2_col1" class="data row2 col1">15.5%</td>
+<td id="T_bad9e_row2_col2" class="data row2 col2">6.0%</td>
+</tr>
+<tr class="even">
+<td id="T_bad9e_row3_col0" class="data row3 col0">South</td>
+<td id="T_bad9e_row3_col1" class="data row3 col1">15.3%</td>
+<td id="T_bad9e_row3_col2" class="data row3 col2">7.3%</td>
+</tr>
+<tr class="odd">
+<td id="T_bad9e_row4_col0" class="data row4 col0">Southwest</td>
+<td id="T_bad9e_row4_col1" class="data row4 col1">24.0%</td>
+<td id="T_bad9e_row4_col2" class="data row4 col2">10.8%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="cell-region-distribution" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div id="region-distribution" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/region-distribution-output-1.png" width="854" height="422" class="figure-img"></p>
+<figcaption>Regional composition by Blueprinty customer status</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>What the regional split shows:</strong></p>
+<ul>
+<li>The regional imbalance is large.</li>
+<li>About <strong>68% of Blueprinty customers</strong> are in the Northeast.</li>
+<li>Only about <strong>27% of non-customers</strong> are in the Northeast.</li>
+<li>Customers are less represented in every other region.</li>
+</ul>
+<p><strong>Takeaway:</strong> region is a real confounder. If the Northeast has higher patenting rates for reasons unrelated to Blueprinty, then the raw customer gap may partly reflect geography rather than the software.</p>
+<div id="cell-age-histograms" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div id="age-histograms" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/age-histograms-output-1.png" width="949" height="375" class="figure-img"></p>
+<figcaption>Firm age by Blueprinty customer status</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>What the age histograms show:</strong></p>
+<ul>
+<li>The customer and non-customer age distributions are much more similar than the region distributions.</li>
+<li>Customers are still slightly older on average.</li>
+<li>Age can matter because older firms may have more developed R&amp;D processes, patent-writing routines, and product portfolios.</li>
+<li>The relationship may not be perfectly straight-line: patenting could rise as firms mature, then flatten or decline.</li>
+</ul>
+<p>For that reason, the regression controls for both <strong>age</strong> and <strong>age squared</strong>. This lets the model capture a curved relationship between firm age and patent counts.</p>
+<section id="exploration-summary" class="level3">
+<h3 class="anchored" data-anchor-id="exploration-summary">Exploration summary</h3>
+<p>The exploratory analysis points to three useful ideas:</p>
+<ol type="1">
+<li><strong>Customers do have higher raw patent counts.</strong> The average gap is about 0.66 patents over five years.</li>
+<li><strong>The groups are not balanced.</strong> Customers are heavily concentrated in the Northeast and are slightly older.</li>
+<li><strong>A regression model is needed.</strong> The model should compare customers and non-customers while holding observed firm characteristics fixed.</li>
+</ol>
+</section>
+</section>
+<section id="a-simple-poisson-model-via-maximum-likelihood" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-poisson-model-via-maximum-likelihood">A Simple Poisson Model via Maximum Likelihood</h2>
+<p>Before using a full regression model, I start with the simplest possible Poisson model: one common patent rate for every firm.</p>
+<p>This model is useful for learning the MLE mechanics, but it is <strong>not a great final model</strong> for the business question.</p>
+<p><strong>Why it is useful:</strong></p>
+<ul>
+<li>Patent counts are non-negative integers.</li>
+<li>The Poisson distribution is designed for count outcomes: <span class="math inline">\(0,1,2,\ldots\)</span>.</li>
+<li>The model has one rate parameter, <span class="math inline">\(\lambda\)</span>, which is easy to estimate and visualize.</li>
+</ul>
+<p><strong>Why it is limited:</strong></p>
+<ul>
+<li>It assumes every firm has the same expected patent count.</li>
+<li>It ignores customer status, age, and region.</li>
+<li>It assumes the mean and variance of patent counts are the same, which may be too restrictive.</li>
+<li>It cannot answer the real question: whether customers patent more after adjusting for firm characteristics.</li>
+</ul>
+<p>So this section is a stepping stone. It shows how MLE works before moving to Poisson regression.</p>
+<p>For one firm, assume:</p>
+<p><span class="math display">\[
+Y_i \sim \text{Poisson}(\lambda)
+\]</span></p>
+<p>with probability mass function:</p>
+<p><span class="math display">\[
+f(y_i \mid \lambda) = \frac{e^{-\lambda}\lambda^{y_i}}{y_i!}.
+\]</span></p>
+<p>If the observations are iid, the joint likelihood is the product of the individual probabilities:</p>
+<p><span class="math display">\[
+L_n(\lambda)
+= \prod_{i=1}^n \frac{e^{-\lambda}\lambda^{y_i}}{y_i!}.
+\]</span></p>
+<p>Collecting terms gives:</p>
+<p><span class="math display">\[
+L_n(\lambda)
+= \frac{e^{-n\lambda}\lambda^{\sum_{i=1}^n y_i}}{\prod_{i=1}^n y_i!}.
+\]</span></p>
+<p>Taking logs turns the product into a sum:</p>
+<p><span class="math display">\[
+\ell_n(\lambda)
+= \log L_n(\lambda)
+= -n\lambda + \left(\sum_{i=1}^n y_i\right)\log(\lambda) - \sum_{i=1}^n \log(y_i!).
+\]</span></p>
+<p>The last term does not depend on <span class="math inline">\(\lambda\)</span>, but I keep it in the code so that the log-likelihood is on the same scale as standard software.</p>
+<div id="simple-poisson-loglikelihood" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The scalar Poisson log-likelihood for a common rate lambda.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> df[<span class="st">"patents"</span>].to_numpy()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_loglikelihood(lam, Y):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Log-likelihood for iid Y_i ~ Poisson(lambda)."""</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> lam <span class="op">&lt;=</span> <span class="dv">0</span>:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="op">-</span>np.inf</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(Y <span class="op">*</span> np.log(lam) <span class="op">-</span> lam <span class="op">-</span> gammaln(Y <span class="op">+</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="cell-simple-loglikelihood-plot" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lambda_grid <span class="op">=</span> np.linspace(<span class="fl">0.1</span>, <span class="dv">8</span>, <span class="dv">300</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ll_values <span class="op">=</span> np.array([poisson_loglikelihood(lam, Y) <span class="cf">for</span> lam <span class="kw">in</span> lambda_grid])</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>lambda_mean <span class="op">=</span> Y.mean()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>lambda_opt <span class="op">=</span> minimize_scalar(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> lam: <span class="op">-</span>poisson_loglikelihood(lam, Y),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    bounds<span class="op">=</span>(<span class="fl">0.001</span>, Y.<span class="bu">max</span>() <span class="op">+</span> <span class="dv">10</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    method<span class="op">=</span><span class="st">"bounded"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>lambda_mle <span class="op">=</span> lambda_opt.x</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">4.5</span>))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ax.plot(lambda_grid, ll_values, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ax.axvline(lambda_mle, linestyle<span class="op">=</span><span class="st">"--"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f"Numerical MLE = </span><span class="sc">{</span>lambda_mle<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ax.axvline(lambda_mean, linestyle<span class="op">=</span><span class="st">":"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f"Sample mean = </span><span class="sc">{</span>lambda_mean<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="vs">r"</span><span class="dv">$</span><span class="er">\</span><span class="vs">lambda</span><span class="dv">$</span><span class="vs">"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Log-likelihood"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="vs">r"The MLE is the value of </span><span class="dv">$</span><span class="er">\</span><span class="vs">lambda</span><span class="dv">$</span><span class="vs"> at the peak"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="simple-loglikelihood-plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/simple-loglikelihood-plot-output-1.png" width="758" height="420" class="figure-img"></p>
+<figcaption>Log-likelihood for the simple one-parameter Poisson model</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The log-likelihood curve peaks at the value of <span class="math inline">\(\lambda\)</span> that makes the observed patent counts most likely under the simple Poisson model. Visually, the peak occurs around 3.68.</p>
+<p>We can also solve this analytically. The first derivative is:</p>
+<p><span class="math display">\[
+\frac{\partial \ell_n(\lambda)}{\partial \lambda}
+= -n + \frac{\sum_{i=1}^n y_i}{\lambda}.
+\]</span></p>
+<p>Setting it equal to zero gives:</p>
+<p><span class="math display">\[
+-n + \frac{\sum_{i=1}^n y_i}{\lambda}=0
+\qquad \Rightarrow \qquad
+\hat{\lambda}_{MLE}=\frac{1}{n}\sum_{i=1}^n y_i = \bar{Y}.
+\]</span></p>
+<p>This result makes intuitive sense because the mean of a Poisson distribution is <span class="math inline">\(\lambda\)</span>.</p>
+<div id="cell-simple-poisson-results" class="cell" data-execution_count="9">
+<div id="simple-poisson-results" class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<table id="T_36152" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_36152_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Quantity</th>
+<th id="T_36152_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_36152_row0_col0" class="data row0 col0">Sample mean of patent counts</td>
+<td id="T_36152_row0_col1" class="data row0 col1">3.684667</td>
+</tr>
+<tr class="even">
+<td id="T_36152_row1_col0" class="data row1 col0">Numerical MLE from scipy.optimize</td>
+<td id="T_36152_row1_col1" class="data row1 col1">3.684667</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The numerical optimizer and the sample mean agree up to numerical precision. This is exactly what the likelihood derivation predicted.</p>
+</section>
+<section id="poisson-regression" class="level2">
+<h2 class="anchored" data-anchor-id="poisson-regression">Poisson Regression</h2>
+<p>The simple model gives every firm the same expected patent count. That is too crude. A better model lets the expected count change with firm characteristics.</p>
+<section id="why-the-exponential-shows-up" class="level3">
+<h3 class="anchored" data-anchor-id="why-the-exponential-shows-up">Why the exponential shows up</h3>
+<p>A Poisson rate must be positive. A linear regression-style score, <span class="math inline">\(X_i'\beta\)</span>, can be negative, zero, or positive. So we model the <strong>log</strong> of the expected count as a linear function:</p>
+<p><span class="math display">\[
+\log(\lambda_i) = X_i'\beta.
+\]</span></p>
+<p>Exponentiating both sides gives:</p>
+<p><span class="math display">\[
+\lambda_i = \exp(X_i'\beta).
+\]</span></p>
+<p>That is the purpose of <code>exp()</code>: it converts any linear score into a positive expected patent count. It also gives the coefficients a clean interpretation:</p>
+<ul>
+<li>A coefficient is a change in the <strong>log expected count</strong>.</li>
+<li><code>exp(coefficient)</code> is a <strong>multiplier</strong> on the expected count.</li>
+<li>For example, if a coefficient is 0.20, then <span class="math inline">\(\exp(0.20) \approx 1.22\)</span>, meaning about <strong>22% higher expected counts</strong>, holding other variables fixed.</li>
+</ul>
+<p>This setup is called a <strong>generalized linear model (GLM)</strong>: we choose a distribution for the outcome and a link function for the mean. Here the outcome distribution is Poisson, and the link function is the log link.</p>
+<p>The model is:</p>
+<p><span class="math display">\[
+Y_i \sim \text{Poisson}(\lambda_i)
+\qquad \text{where} \qquad
+\lambda_i = \exp(X_i'\beta).
+\]</span></p>
+<p>For the regression model, the log-likelihood is:</p>
+<p><span class="math display">\[
+\ell_n(\beta)
+= \sum_{i=1}^n \left[y_i X_i'\beta - \exp(X_i'\beta) - \log(y_i!)\right].
+\]</span></p>
+<p>The design matrix includes:</p>
+<ul>
+<li>an intercept,</li>
+<li>centered age,</li>
+<li>centered age squared,</li>
+<li>region indicators,</li>
+<li>the Blueprinty customer indicator.</li>
+</ul>
+<p>I center age before squaring it to make the numerical optimization more stable. This does not change the basic meaning of the model; it still lets patent counts rise or fall nonlinearly with age. Northeast is the omitted region, so each region coefficient is interpreted relative to Northeast.</p>
+<div id="poisson-regression-functions" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Center age before squaring to make numerical optimization more stable.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>age_mean <span class="op">=</span> df[<span class="st">"age"</span>].mean()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"age_c"</span>] <span class="op">=</span> df[<span class="st">"age"</span>] <span class="op">-</span> age_mean</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"age_c_sq"</span>] <span class="op">=</span> df[<span class="st">"age_c"</span>] <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>region_dummies <span class="op">=</span> (</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    pd.get_dummies(df[<span class="st">"region"</span>], prefix<span class="op">=</span><span class="st">"region"</span>, drop_first<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      .drop(columns<span class="op">=</span>[<span class="st">"region_Northeast"</span>])</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>X_df <span class="op">=</span> pd.concat(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        pd.Series(<span class="fl">1.0</span>, index<span class="op">=</span>df.index, name<span class="op">=</span><span class="st">"Intercept"</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        df[[<span class="st">"age_c"</span>, <span class="st">"age_c_sq"</span>]],</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        region_dummies,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        df[[<span class="st">"iscustomer"</span>]],</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    axis<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>).astype(<span class="bu">float</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X_df.to_numpy()</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> df[<span class="st">"patents"</span>].to_numpy()</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_regression_loglikelihood(beta, Y, X):</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Log-likelihood for Poisson regression with lambda_i = exp(X_i beta)."""</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    eta <span class="op">=</span> X <span class="op">@</span> beta</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.exp(eta)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(Y <span class="op">*</span> eta <span class="op">-</span> mu <span class="op">-</span> gammaln(Y <span class="op">+</span> <span class="dv">1</span>))</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_regression_nll(beta, Y, X):</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Negative log-likelihood, because scipy minimizes by default."""</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>poisson_regression_loglikelihood(beta, Y, X)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_regression_gradient(beta, Y, X):</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    eta <span class="op">=</span> X <span class="op">@</span> beta</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.exp(eta)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>(X.T <span class="op">@</span> (Y <span class="op">-</span> mu))</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson_regression_hessian(beta, Y, X):</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    eta <span class="op">=</span> X <span class="op">@</span> beta</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    mu <span class="op">=</span> np.exp(eta)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Hessian of the negative log-likelihood: X' diag(mu) X</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X.T <span class="op">@</span> (X <span class="op">*</span> mu[:, <span class="va">None</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="poisson-regression-estimation" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> np.zeros(X.shape[<span class="dv">1</span>])</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>start[<span class="dv">0</span>] <span class="op">=</span> np.log(Y.mean())</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>mle_result <span class="op">=</span> minimize(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    poisson_regression_nll,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    x0<span class="op">=</span>start,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    args<span class="op">=</span>(Y, X),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    jac<span class="op">=</span>poisson_regression_gradient,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    hess<span class="op">=</span>poisson_regression_hessian,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    method<span class="op">=</span><span class="st">"trust-exact"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    options<span class="op">=</span>{<span class="st">"maxiter"</span>: <span class="dv">1000</span>},</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>beta_hat <span class="op">=</span> mle_result.x</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> poisson_regression_hessian(beta_hat, Y, X)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>cov_hat <span class="op">=</span> np.linalg.inv(H)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>se_hat <span class="op">=</span> np.sqrt(np.diag(cov_hat))</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>z_hat <span class="op">=</span> beta_hat <span class="op">/</span> se_hat</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>p_hat <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> norm.cdf(np.<span class="bu">abs</span>(z_hat)))</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Built-in check using statsmodels GLM.</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>glm_fit <span class="op">=</span> sm.GLM(Y, X_df, family<span class="op">=</span>sm.families.Poisson()).fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="cell-regression-table" class="cell" data-execution_count="12">
+<div id="regression-table" class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<table id="T_8ddae" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_8ddae_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Term</th>
+<th id="T_8ddae_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">MLE coef</th>
+<th id="T_8ddae_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">MLE std. error</th>
+<th id="T_8ddae_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">z</th>
+<th id="T_8ddae_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">p-value</th>
+<th id="T_8ddae_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">GLM coef</th>
+<th id="T_8ddae_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">GLM std. error</th>
+<th id="T_8ddae_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">exp(MLE coef)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_8ddae_row0_col0" class="data row0 col0">Intercept</td>
+<td id="T_8ddae_row0_col1" class="data row0 col1">1.3738</td>
+<td id="T_8ddae_row0_col2" class="data row0 col2">0.0289</td>
+<td id="T_8ddae_row0_col3" class="data row0 col3">47.50</td>
+<td id="T_8ddae_row0_col4" class="data row0 col4">&lt;0.001</td>
+<td id="T_8ddae_row0_col5" class="data row0 col5">1.3738</td>
+<td id="T_8ddae_row0_col6" class="data row0 col6">0.0289</td>
+<td id="T_8ddae_row0_col7" class="data row0 col7">3.951</td>
+</tr>
+<tr class="even">
+<td id="T_8ddae_row1_col0" class="data row1 col0">age_c</td>
+<td id="T_8ddae_row1_col1" class="data row1 col1">-0.0080</td>
+<td id="T_8ddae_row1_col2" class="data row1 col2">0.0021</td>
+<td id="T_8ddae_row1_col3" class="data row1 col3">-3.84</td>
+<td id="T_8ddae_row1_col4" class="data row1 col4">&lt;0.001</td>
+<td id="T_8ddae_row1_col5" class="data row1 col5">-0.0080</td>
+<td id="T_8ddae_row1_col6" class="data row1 col6">0.0021</td>
+<td id="T_8ddae_row1_col7" class="data row1 col7">0.992</td>
+</tr>
+<tr class="odd">
+<td id="T_8ddae_row2_col0" class="data row2 col0">age_c_sq</td>
+<td id="T_8ddae_row2_col1" class="data row2 col1">-0.0030</td>
+<td id="T_8ddae_row2_col2" class="data row2 col2">0.0003</td>
+<td id="T_8ddae_row2_col3" class="data row2 col3">-11.51</td>
+<td id="T_8ddae_row2_col4" class="data row2 col4">&lt;0.001</td>
+<td id="T_8ddae_row2_col5" class="data row2 col5">-0.0030</td>
+<td id="T_8ddae_row2_col6" class="data row2 col6">0.0003</td>
+<td id="T_8ddae_row2_col7" class="data row2 col7">0.997</td>
+</tr>
+<tr class="even">
+<td id="T_8ddae_row3_col0" class="data row3 col0">region_Midwest</td>
+<td id="T_8ddae_row3_col1" class="data row3 col1">-0.0292</td>
+<td id="T_8ddae_row3_col2" class="data row3 col2">0.0436</td>
+<td id="T_8ddae_row3_col3" class="data row3 col3">-0.67</td>
+<td id="T_8ddae_row3_col4" class="data row3 col4">0.504</td>
+<td id="T_8ddae_row3_col5" class="data row3 col5">-0.0292</td>
+<td id="T_8ddae_row3_col6" class="data row3 col6">0.0436</td>
+<td id="T_8ddae_row3_col7" class="data row3 col7">0.971</td>
+</tr>
+<tr class="odd">
+<td id="T_8ddae_row4_col0" class="data row4 col0">region_Northwest</td>
+<td id="T_8ddae_row4_col1" class="data row4 col1">-0.0467</td>
+<td id="T_8ddae_row4_col2" class="data row4 col2">0.0466</td>
+<td id="T_8ddae_row4_col3" class="data row4 col3">-1.00</td>
+<td id="T_8ddae_row4_col4" class="data row4 col4">0.316</td>
+<td id="T_8ddae_row4_col5" class="data row4 col5">-0.0467</td>
+<td id="T_8ddae_row4_col6" class="data row4 col6">0.0466</td>
+<td id="T_8ddae_row4_col7" class="data row4 col7">0.954</td>
+</tr>
+<tr class="even">
+<td id="T_8ddae_row5_col0" class="data row5 col0">region_South</td>
+<td id="T_8ddae_row5_col1" class="data row5 col1">0.0274</td>
+<td id="T_8ddae_row5_col2" class="data row5 col2">0.0451</td>
+<td id="T_8ddae_row5_col3" class="data row5 col3">0.61</td>
+<td id="T_8ddae_row5_col4" class="data row5 col4">0.544</td>
+<td id="T_8ddae_row5_col5" class="data row5 col5">0.0274</td>
+<td id="T_8ddae_row5_col6" class="data row5 col6">0.0451</td>
+<td id="T_8ddae_row5_col7" class="data row5 col7">1.028</td>
+</tr>
+<tr class="odd">
+<td id="T_8ddae_row6_col0" class="data row6 col0">region_Southwest</td>
+<td id="T_8ddae_row6_col1" class="data row6 col1">0.0214</td>
+<td id="T_8ddae_row6_col2" class="data row6 col2">0.0385</td>
+<td id="T_8ddae_row6_col3" class="data row6 col3">0.56</td>
+<td id="T_8ddae_row6_col4" class="data row6 col4">0.578</td>
+<td id="T_8ddae_row6_col5" class="data row6 col5">0.0214</td>
+<td id="T_8ddae_row6_col6" class="data row6 col6">0.0385</td>
+<td id="T_8ddae_row6_col7" class="data row6 col7">1.022</td>
+</tr>
+<tr class="even">
+<td id="T_8ddae_row7_col0" class="data row7 col0">iscustomer</td>
+<td id="T_8ddae_row7_col1" class="data row7 col1">0.2076</td>
+<td id="T_8ddae_row7_col2" class="data row7 col2">0.0309</td>
+<td id="T_8ddae_row7_col3" class="data row7 col3">6.72</td>
+<td id="T_8ddae_row7_col4" class="data row7 col4">&lt;0.001</td>
+<td id="T_8ddae_row7_col5" class="data row7 col5">0.2076</td>
+<td id="T_8ddae_row7_col6" class="data row7 col6">0.0309</td>
+<td id="T_8ddae_row7_col7" class="data row7 col7">1.231</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="how-to-read-the-regression-table" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-read-the-regression-table">How to read the regression table</h3>
+<ul>
+<li><strong>MLE vs.&nbsp;GLM:</strong> the by-hand MLE estimates match the built-in Poisson GLM estimates. This is the main check that the likelihood was coded correctly.</li>
+<li><strong>Standard errors:</strong> the standard errors also match because they come from the curvature of the log-likelihood at the maximum.</li>
+<li><strong><code>exp(MLE coef)</code>:</strong> this column turns log-count coefficients into easier multipliers. A value above 1 means higher expected patent counts; a value below 1 means lower expected patent counts.</li>
+</ul>
+</section>
+<section id="main-regression-result" class="level3">
+<h3 class="anchored" data-anchor-id="main-regression-result">Main regression result</h3>
+<p>The customer coefficient is about <strong>0.208</strong>. On the original count scale:</p>
+<p><span class="math display">\[
+\exp(0.208) \approx 1.23.
+\]</span></p>
+<p>So, holding age and region fixed, Blueprinty customers are predicted to have about <strong>1.23 times as many patents</strong> as otherwise similar non-customers. That is about a <strong>23% higher expected patent count</strong>.</p>
+<p>The age terms suggest a curved relationship between firm age and patenting. Expected patent counts rise until roughly the mid-20s in firm age, then taper off. That is plausible: very young firms may still be building patentable products, while very mature firms may have slower marginal patent growth.</p>
+<p>The region coefficients are smaller than the customer coefficient. Since Northeast is the omitted region, each region term compares that region against Northeast while holding the other variables fixed.</p>
+<div id="cell-model-fit-details" class="cell" data-execution_count="13">
+<div id="model-fit-details" class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<table id="T_63f5b" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_63f5b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Quantity</th>
+<th id="T_63f5b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_63f5b_row0_col0" class="data row0 col0">Optimizer converged</td>
+<td id="T_63f5b_row0_col1" class="data row0 col1">True</td>
+</tr>
+<tr class="even">
+<td id="T_63f5b_row1_col0" class="data row1 col0">Custom MLE log-likelihood</td>
+<td id="T_63f5b_row1_col1" class="data row1 col1">-3258.072</td>
+</tr>
+<tr class="odd">
+<td id="T_63f5b_row2_col0" class="data row2 col0">statsmodels GLM log-likelihood</td>
+<td id="T_63f5b_row2_col1" class="data row2 col1">-3258.072</td>
+</tr>
+<tr class="even">
+<td id="T_63f5b_row3_col0" class="data row3 col0">Maximum absolute coefficient difference</td>
+<td id="T_63f5b_row3_col1" class="data row3 col1">7.56e-12</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
+<section id="the-effect-of-blueprintys-software" class="level2">
+<h2 class="anchored" data-anchor-id="the-effect-of-blueprintys-software">The Effect of Blueprinty’s Software</h2>
+<p>The coefficient table is useful, but the marketing question is easier to understand in expected patent counts. The customer coefficient tells us a percentage-type effect, not an “extra patents” effect.</p>
+<p>To translate the result back into patent counts, I create two counterfactual versions of the data:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th>What changes</th>
+<th>What stays fixed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(X_0\)</span></td>
+<td>Treat every firm as a non-customer</td>
+<td>Age and region</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(X_1\)</span></td>
+<td>Treat every firm as a customer</td>
+<td>Age and region</td>
+</tr>
+</tbody>
+</table>
+<p>Then I predict patents under both scenarios and average the difference.</p>
+<div id="customer-counterfactuals" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X0_df <span class="op">=</span> X_df.copy()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>X1_df <span class="op">=</span> X_df.copy()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>X0_df[<span class="st">"iscustomer"</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>X1_df[<span class="st">"iscustomer"</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>pred_noncustomer <span class="op">=</span> np.exp(X0_df.to_numpy() <span class="op">@</span> beta_hat)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>pred_customer <span class="op">=</span> np.exp(X1_df.to_numpy() <span class="op">@</span> beta_hat)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>average_effect <span class="op">=</span> np.mean(pred_customer <span class="op">-</span> pred_noncustomer)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>mean_noncustomer_cf <span class="op">=</span> np.mean(pred_noncustomer)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>mean_customer_cf <span class="op">=</span> np.mean(pred_customer)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>relative_effect <span class="op">=</span> mean_customer_cf <span class="op">/</span> mean_noncustomer_cf <span class="op">-</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="cell-customer-effect-table" class="cell" data-execution_count="15">
+<div id="customer-effect-table" class="cell-output cell-output-display">
+<style type="text/css">
+</style>
+
+<table id="T_7da2b" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_7da2b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Quantity</th>
+<th id="T_7da2b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_7da2b_row0_col0" class="data row0 col0">Predicted patents if all firms are non-customers</td>
+<td id="T_7da2b_row0_col1" class="data row0 col1">3.436</td>
+</tr>
+<tr class="even">
+<td id="T_7da2b_row1_col0" class="data row1 col0">Predicted patents if all firms are customers</td>
+<td id="T_7da2b_row1_col1" class="data row1 col1">4.229</td>
+</tr>
+<tr class="odd">
+<td id="T_7da2b_row2_col0" class="data row2 col0">Average counterfactual difference</td>
+<td id="T_7da2b_row2_col1" class="data row2 col1">0.793</td>
+</tr>
+<tr class="even">
+<td id="T_7da2b_row3_col0" class="data row3 col0">Relative difference</td>
+<td id="T_7da2b_row3_col1" class="data row3 col1">23.1%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="cell-customer-effect-plot" class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display">
+<div id="customer-effect-plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/customer-effect-plot-output-1.png" width="662" height="422" class="figure-img"></p>
+<figcaption>Counterfactual expected patent counts from the fitted Poisson model</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<section id="what-the-model-finds" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-model-finds">What the model finds</h3>
+<p>The fitted model gives a clear directional result:</p>
+<ul>
+<li>If every firm is treated as a non-customer, the model predicts about <strong>3.44 patents</strong> per firm.</li>
+<li>If every firm is treated as a customer, the model predicts about <strong>4.23 patents</strong> per firm.</li>
+<li>The average difference is about <strong>0.79 additional patents</strong> over five years.</li>
+<li>In relative terms, that is about a <strong>23% increase</strong> in expected patent counts.</li>
+</ul>
+</section>
+<section id="what-this-means-for-blueprinty" class="level3">
+<h3 class="anchored" data-anchor-id="what-this-means-for-blueprinty">What this means for Blueprinty</h3>
+<p>The result supports Blueprinty’s marketing story in a controlled way: after adjusting for age and region, customers are still predicted to receive more patents than comparable non-customers. The raw difference was not just a simple artifact of customer firms being older or regionally different.</p>
+</section>
+<section id="what-this-does-not-prove" class="level3">
+<h3 class="anchored" data-anchor-id="what-this-does-not-prove">What this does not prove</h3>
+<p>This is still not definitive causal evidence. The dataset is observational, not randomized. The model controls for age and region, but it does not control for things like:</p>
+<ul>
+<li>R&amp;D budget,</li>
+<li>legal resources,</li>
+<li>engineering headcount,</li>
+<li>product quality,</li>
+<li>patent strategy,</li>
+<li>pre-existing innovation intensity.</li>
+</ul>
+<p>A stronger design would compare firms before and after adoption, use a credible quasi-experiment, or randomly encourage adoption across otherwise similar firms.</p>
+</section>
+<section id="final-takeaway" class="level3">
+<h3 class="anchored" data-anchor-id="final-takeaway">Final takeaway</h3>
+<p>Within the limits of the available data, the Poisson MLE analysis supports the claim that Blueprinty customers tend to receive more patents than comparable non-customers. The best interpretation is not “Blueprinty definitely causes more patents,” but rather:</p>
+<blockquote class="blockquote">
+<p>Blueprinty customer status is strongly associated with higher expected patent counts, even after controlling for firm age and region.</p>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
