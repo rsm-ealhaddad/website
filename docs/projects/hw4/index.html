@@ -1,0 +1,2576 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.13">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ebrahim Alhaddad">
+<meta name="dcterms.date" content="2026-05-27">
+
+<title>MaxDiff Analysis of MSBA Class Preferences – Ebrahim’s Website</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ac077c1e730dfeb5e42400639d17284e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-610593e65a40a0629ca575dfc540a55b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Ebrahim’s Website</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../resume.html"> 
+<span class="menu-text">Resume</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html"> 
+<span class="menu-text">Projects</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#why-maxdiff-is-better-than-a-simple-rating-scale" id="toc-why-maxdiff-is-better-than-a-simple-rating-scale" class="nav-link" data-scroll-target="#why-maxdiff-is-better-than-a-simple-rating-scale">Why MaxDiff is better than a simple rating scale</a></li>
+  <li><a href="#what-this-analysis-estimates" id="toc-what-this-analysis-estimates" class="nav-link" data-scroll-target="#what-this-analysis-estimates">What this analysis estimates</a></li>
+  <li><a href="#expectations-before-seeing-the-results" id="toc-expectations-before-seeing-the-results" class="nav-link" data-scroll-target="#expectations-before-seeing-the-results">Expectations before seeing the results</a></li>
+  </ul></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The Data</a></li>
+  <li><a href="#counts-analysis" id="toc-counts-analysis" class="nav-link" data-scroll-target="#counts-analysis">Counts Analysis</a>
+  <ul class="collapse">
+  <li><a href="#adding-bootstrap-confidence-intervals" id="toc-adding-bootstrap-confidence-intervals" class="nav-link" data-scroll-target="#adding-bootstrap-confidence-intervals">Adding bootstrap confidence intervals</a></li>
+  <li><a href="#interpreting-the-counts-results" id="toc-interpreting-the-counts-results" class="nav-link" data-scroll-target="#interpreting-the-counts-results">Interpreting the counts results</a></li>
+  </ul></li>
+  <li><a href="#from-maxdiff-data-to-mnl-choices" id="toc-from-maxdiff-data-to-mnl-choices" class="nav-link" data-scroll-target="#from-maxdiff-data-to-mnl-choices">From MaxDiff Data to MNL Choices</a></li>
+  <li><a href="#mnl-via-maximum-likelihood" id="toc-mnl-via-maximum-likelihood" class="nav-link" data-scroll-target="#mnl-via-maximum-likelihood">MNL via Maximum Likelihood</a>
+  <ul class="collapse">
+  <li><a href="#estimation-steps" id="toc-estimation-steps" class="nav-link" data-scroll-target="#estimation-steps">Estimation steps</a></li>
+  </ul></li>
+  <li><a href="#mnl-via-bayesian-estimation" id="toc-mnl-via-bayesian-estimation" class="nav-link" data-scroll-target="#mnl-via-bayesian-estimation">MNL via Bayesian Estimation</a>
+  <ul class="collapse">
+  <li><a href="#mcmc-steps" id="toc-mcmc-steps" class="nav-link" data-scroll-target="#mcmc-steps">MCMC steps</a></li>
+  </ul></li>
+  <li><a href="#comparing-the-three-methods" id="toc-comparing-the-three-methods" class="nav-link" data-scroll-target="#comparing-the-three-methods">Comparing the Three Methods</a></li>
+  <li><a href="#conclusion-and-next-steps" id="toc-conclusion-and-next-steps" class="nav-link" data-scroll-target="#conclusion-and-next-steps">Conclusion and Next Steps</a>
+  <ul class="collapse">
+  <li><a href="#recommended-next-steps" id="toc-recommended-next-steps" class="nav-link" data-scroll-target="#recommended-next-steps">Recommended next steps</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">MaxDiff Analysis of MSBA Class Preferences</h1>
+<p class="subtitle lead">Counts, MLE, and Bayesian estimation of the MNL model</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Ebrahim Alhaddad </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 27, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<style>
+:root {
+  --rady-blue: #0b5ed7;
+  --rady-blue-dark: #063f8f;
+  --rady-blue-light: #eaf4ff;
+  --rady-blue-mid: #cfe5ff;
+}
+.blue-text { color: var(--rady-blue); font-weight: 700; }
+.blue-soft { color: var(--rady-blue-dark); font-weight: 600; }
+.blue-box {
+  border-left: 5px solid var(--rady-blue);
+  background: var(--rady-blue-light);
+  padding: 0.8rem 1rem;
+  border-radius: 0.55rem;
+  margin: 1rem 0;
+}
+.small-note { font-size: 0.95rem; color: #2f4f6f; }
+table { border-collapse: collapse; width: 100%; }
+thead th {
+  background: var(--rady-blue-light) !important;
+  color: var(--rady-blue-dark) !important;
+  border-bottom: 2px solid var(--rady-blue-mid) !important;
+}
+tbody tr:nth-child(even) { background: #f8fbff; }
+td, th { padding: 0.55rem 0.7rem; }
+</style>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p><span class="blue-text">MaxDiff</span>, also called <strong>Best-Worst Scaling</strong>, is a survey method for measuring <strong>relative preference</strong>. Instead of asking people to rate every class on a 1-10 scale, each respondent sees a small set of classes and makes two choices:</p>
+<ol type="1">
+<li>Which class in this set is the <strong>best / most preferred</strong>?</li>
+<li>Which class in this set is the <strong>worst / least preferred</strong>?</li>
+</ol>
+<p>In this assignment, each core MaxDiff screen shows <strong>four MSBA classes</strong>. The respondent does not need to rank all 10 classes at once. They only need to make a small trade-off on each screen. Repeating that across many carefully designed screens gives enough information to estimate the relative utility of every class.</p>
+<div class="blue-box">
+<p><strong>Small example.</strong> Suppose a student sees: SQL, Large Data, Marketing Analytics, and Capstone. A rating question might let them give all four classes an 8/10, which sounds positive but does not reveal a clear preference. MaxDiff forces a choice: maybe Marketing Analytics is picked as <em>best</em> and SQL as <em>worst</em>. That one screen now tells us Marketing Analytics beat the other displayed options, and SQL lost against the other displayed options.</p>
+</div>
+<section id="why-maxdiff-is-better-than-a-simple-rating-scale" class="level3">
+<h3 class="anchored" data-anchor-id="why-maxdiff-is-better-than-a-simple-rating-scale">Why MaxDiff is better than a simple rating scale</h3>
+<p>Ratings are easy to collect, but they are often hard to compare. One person’s “8” may mean “excellent,” while another person’s “8” may mean “pretty good.” Some respondents also rate everything highly because they do not want to be negative. MaxDiff avoids much of that problem by asking for <strong>trade-offs</strong> instead of abstract numbers. The result is a cleaner preference signal: what wins, what loses, and by how much.</p>
+</section>
+<section id="what-this-analysis-estimates" class="level3">
+<h3 class="anchored" data-anchor-id="what-this-analysis-estimates">What this analysis estimates</h3>
+<p>The 10 items are the core MSBA classes in the survey. The goal is to estimate which classes students prefer <strong>relative to each other</strong>, not to decide whether a class is objectively good or bad. I use three approaches, moving from simplest to most model-based:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>What it gives us</th>
+<th>Main limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Counts analysis</strong></td>
+<td>A fast descriptive ranking. It computes how often each class is picked as best minus how often it is picked as worst. This is easy to explain and good for a first look.</td>
+<td>It does not fully use the structure of each screen. It treats the score like a summary statistic rather than a model of the actual best/worst choice process.</td>
+</tr>
+<tr class="even">
+<td><strong>MNL by maximum likelihood</strong></td>
+<td>A formal utility estimate for each class. It answers: “what utility values make the observed best/worst choices most likely?” It also converts utilities into interpretable preference shares.</td>
+<td>It gives one best estimate per class. Standard errors are available for the utility coefficients, but uncertainty around transformed outputs like shares is less direct.</td>
+</tr>
+<tr class="odd">
+<td><strong>Bayesian MNL</strong></td>
+<td>A full posterior distribution for each class utility and preference share. This makes uncertainty easier to communicate with credible intervals.</td>
+<td>It requires an MCMC sampler, tuning, and basic convergence checks. The result depends on both the likelihood and the prior, even when the prior is weak.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="expectations-before-seeing-the-results" class="level3">
+<h3 class="anchored" data-anchor-id="expectations-before-seeing-the-results">Expectations before seeing the results</h3>
+<p>Before fitting the models, I expected the three methods to agree on the broad ranking but not necessarily on every middle-rank detail. The reason is that the top and bottom classes should produce strong signals if students consistently choose them as best or worst. Middle classes are harder: they may be selected best sometimes, worst sometimes, and often look similar to one another.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Expectation</th>
+<th>Why I expect it</th>
+<th>How I will interpret it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Top and bottom classes should be stable across methods.</strong></td>
+<td>If a class is truly very preferred, it should be picked best often and almost never picked worst. If it is truly weak, the opposite should happen.</td>
+<td>Agreement at the extremes means the result is not just an artifact of one method.</td>
+</tr>
+<tr class="even">
+<td><strong>Middle-ranked classes may switch places.</strong></td>
+<td>Classes with similar appeal can have close scores and overlapping uncertainty intervals.</td>
+<td>Small rank differences in the middle should not be over-interpreted.</td>
+</tr>
+<tr class="odd">
+<td><strong>MNL and Bayesian MNL should be very close.</strong></td>
+<td>They use the same likelihood, and the Bayesian prior used here is weak. With 680 task screens, the data should dominate.</td>
+<td>Large disagreement would be a warning to check the code, prior, or sampler.</td>
+</tr>
+<tr class="even">
+<td><strong>Uncertainty intervals should be widest where preferences are ambiguous.</strong></td>
+<td>If respondents are split about a class, resampling or posterior draws should show more variability.</td>
+<td>Wide or overlapping intervals mean the ranking is less certain.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="the-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-data">The Data</h2>
+<p>The main data file is <code>maxdiff_design_and_choices.csv</code>. Each row is one item shown on one survey screen. The columns are:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Record ID</code></td>
+<td>Anonymized respondent identifier</td>
+</tr>
+<tr class="even">
+<td><code>Task</code></td>
+<td>Screen number for that respondent</td>
+</tr>
+<tr class="odd">
+<td><code>Position</code></td>
+<td>Slot on the screen</td>
+</tr>
+<tr class="even">
+<td><code>Item</code></td>
+<td>Numeric item ID</td>
+</tr>
+<tr class="odd">
+<td><code>Response</code></td>
+<td><code>1</code> if picked best, <code>-1</code> if picked worst, <code>0</code> otherwise</td>
+</tr>
+</tbody>
+</table>
+<p>The label file, <code>maxdiff_item_labels.csv</code>, maps item numbers to class names.</p>
+<p>The raw file contains both the 4-item MaxDiff screens and additional 2-row anchor-style screens involving an item outside the 10 class labels. Since the assignment asks for the 10 classes, four items per screen, and one best plus one worst pick, I use only the rows that satisfy that structure.</p>
+<div id="cell-data-descriptives" class="cell" data-execution_count="3">
+<div id="data-descriptives" class="cell-output cell-output-display">
+<style type="text/css">
+#T_373b1 th {
+  background-color: #eaf4ff;
+  color: #0b4f9f;
+  font-weight: 700;
+  border-bottom: 2px solid #cfe5ff;
+}
+#T_373b1 td {
+  border-bottom: 1px solid #e3efff;
+  padding: 6px 10px;
+}
+#T_373b1 tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+#T_373b1 caption {
+  caption-side: top;
+  color: #0b4f9f;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35rem 0;
+}
+</style>
+
+<div id="T_373b1" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_373b1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Analysis sample overview
+</figcaption>
+<div aria-describedby="T_373b1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_373b1" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_373b1_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Quantity</th>
+<th id="T_373b1_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_373b1_row0_col0" class="data row0 col0">Respondents (N)</td>
+<td id="T_373b1_row0_col1" class="data row0 col1">85</td>
+</tr>
+<tr class="even">
+<td id="T_373b1_row1_col0" class="data row1 col0">MaxDiff tasks per respondent (T)</td>
+<td id="T_373b1_row1_col1" class="data row1 col1">8</td>
+</tr>
+<tr class="odd">
+<td id="T_373b1_row2_col0" class="data row2 col0">Items per MaxDiff task (J)</td>
+<td id="T_373b1_row2_col1" class="data row2 col1">4</td>
+</tr>
+<tr class="even">
+<td id="T_373b1_row3_col0" class="data row3 col0">Total labeled class items</td>
+<td id="T_373b1_row3_col1" class="data row3 col1">10</td>
+</tr>
+<tr class="odd">
+<td id="T_373b1_row4_col0" class="data row4 col0">Analyzed task screens</td>
+<td id="T_373b1_row4_col1" class="data row4 col1">680</td>
+</tr>
+<tr class="even">
+<td id="T_373b1_row5_col0" class="data row5 col0">Analyzed item rows</td>
+<td id="T_373b1_row5_col1" class="data row5 col1">2720</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>The analysis sample contains <strong>85 respondents</strong>, <strong>8 MaxDiff tasks per respondent</strong>, and <strong>4 items per task</strong>, for a total of <strong>680 task screens</strong> and <strong>2,720 item-level rows</strong>.</p>
+<div id="cell-sanity-check" class="cell" data-execution_count="4">
+<div id="sanity-check" class="cell-output cell-output-display">
+<style type="text/css">
+#T_9985a th {
+  background-color: #eaf4ff;
+  color: #0b4f9f;
+  font-weight: 700;
+  border-bottom: 2px solid #cfe5ff;
+}
+#T_9985a td {
+  border-bottom: 1px solid #e3efff;
+  padding: 6px 10px;
+}
+#T_9985a tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+#T_9985a caption {
+  caption-side: top;
+  color: #0b4f9f;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35rem 0;
+}
+</style>
+
+<div id="T_9985a" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_9985a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Structural checks for the cleaned MaxDiff screens
+</figcaption>
+<div aria-describedby="T_9985a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_9985a" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_9985a_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Check</th>
+<th id="T_9985a_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Number of passing tasks</th>
+<th id="T_9985a_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Total tasks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_9985a_row0_col0" class="data row0 col0">Task has 4 rows</td>
+<td id="T_9985a_row0_col1" class="data row0 col1">680</td>
+<td id="T_9985a_row0_col2" class="data row0 col2">680</td>
+</tr>
+<tr class="even">
+<td id="T_9985a_row1_col0" class="data row1 col0">Task has exactly 1 best pick</td>
+<td id="T_9985a_row1_col1" class="data row1 col1">680</td>
+<td id="T_9985a_row1_col2" class="data row1 col2">680</td>
+</tr>
+<tr class="odd">
+<td id="T_9985a_row2_col0" class="data row2 col0">Task has exactly 1 worst pick</td>
+<td id="T_9985a_row2_col1" class="data row2 col1">680</td>
+<td id="T_9985a_row2_col2" class="data row2 col2">680</td>
+</tr>
+<tr class="even">
+<td id="T_9985a_row3_col0" class="data row3 col0">Task has exactly 2 neutral rows</td>
+<td id="T_9985a_row3_col1" class="data row3 col1">680</td>
+<td id="T_9985a_row3_col2" class="data row3 col2">680</td>
+</tr>
+<tr class="odd">
+<td id="T_9985a_row4_col0" class="data row4 col0">All four checks pass</td>
+<td id="T_9985a_row4_col1" class="data row4 col1">680</td>
+<td id="T_9985a_row4_col2" class="data row4 col2">680</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>The cleaned MaxDiff sample passes the structural check: every analyzed screen has one best choice, one worst choice, and two unchosen items.</p>
+<div id="cell-exposure-counts" class="cell" data-execution_count="5">
+<div id="exposure-counts" class="cell-output cell-output-display">
+<style type="text/css">
+#T_c7c01 th {
+  background-color: #eaf4ff;
+  color: #0b4f9f;
+  font-weight: 700;
+  border-bottom: 2px solid #cfe5ff;
+}
+#T_c7c01 td {
+  border-bottom: 1px solid #e3efff;
+  padding: 6px 10px;
+}
+#T_c7c01 tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+#T_c7c01 caption {
+  caption-side: top;
+  color: #0b4f9f;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35rem 0;
+}
+</style>
+
+<div id="T_c7c01" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_c7c01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: How often each class was shown
+</figcaption>
+<div aria-describedby="T_c7c01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_c7c01" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_c7c01_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">item</th>
+<th id="T_c7c01_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">short_label</th>
+<th id="T_c7c01_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">times_shown</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_c7c01_row0_col0" class="data row0 col0">1</td>
+<td id="T_c7c01_row0_col1" class="data row0 col1">AI Math / Programming</td>
+<td id="T_c7c01_row0_col2" class="data row0 col2">273</td>
+</tr>
+<tr class="even">
+<td id="T_c7c01_row1_col0" class="data row1 col0">2</td>
+<td id="T_c7c01_row1_col1" class="data row1 col1">SQL</td>
+<td id="T_c7c01_row1_col2" class="data row1 col2">274</td>
+</tr>
+<tr class="odd">
+<td id="T_c7c01_row2_col0" class="data row2 col0">3</td>
+<td id="T_c7c01_row2_col1" class="data row2 col1">Mkt/Fin/Ops</td>
+<td id="T_c7c01_row2_col2" class="data row2 col2">272</td>
+</tr>
+<tr class="even">
+<td id="T_c7c01_row3_col0" class="data row3 col0">4</td>
+<td id="T_c7c01_row3_col1" class="data row3 col1">Large Data</td>
+<td id="T_c7c01_row3_col2" class="data row3 col2">276</td>
+</tr>
+<tr class="odd">
+<td id="T_c7c01_row4_col0" class="data row4 col0">5</td>
+<td id="T_c7c01_row4_col1" class="data row4 col1">Business Analytics</td>
+<td id="T_c7c01_row4_col2" class="data row4 col2">270</td>
+</tr>
+<tr class="even">
+<td id="T_c7c01_row5_col0" class="data row5 col0">6</td>
+<td id="T_c7c01_row5_col1" class="data row5 col1">Analytics Consulting</td>
+<td id="T_c7c01_row5_col2" class="data row5 col2">267</td>
+</tr>
+<tr class="odd">
+<td id="T_c7c01_row6_col0" class="data row6 col0">7</td>
+<td id="T_c7c01_row6_col1" class="data row6 col1">Customer Analytics</td>
+<td id="T_c7c01_row6_col2" class="data row6 col2">276</td>
+</tr>
+<tr class="even">
+<td id="T_c7c01_row7_col0" class="data row7 col0">8</td>
+<td id="T_c7c01_row7_col1" class="data row7 col1">Capstone</td>
+<td id="T_c7c01_row7_col2" class="data row7 col2">272</td>
+</tr>
+<tr class="odd">
+<td id="T_c7c01_row8_col0" class="data row8 col0">9</td>
+<td id="T_c7c01_row8_col1" class="data row8 col1">Marketing Analytics</td>
+<td id="T_c7c01_row8_col2" class="data row8 col2">274</td>
+</tr>
+<tr class="even">
+<td id="T_c7c01_row9_col0" class="data row9 col0">10</td>
+<td id="T_c7c01_row9_col1" class="data row9 col1">BI Systems</td>
+<td id="T_c7c01_row9_col2" class="data row9 col2">266</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>Exposure is close to balanced. Each class is shown between 266 and 276 times, so no class gets a large mechanical advantage from simply appearing more often.</p>
+</section>
+<section id="counts-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="counts-analysis">Counts Analysis</h2>
+<p>The counts analysis is the most direct way to read MaxDiff data. It does not estimate a statistical model yet. It simply asks: <strong>when a class appeared on a screen, how often did it win and how often did it lose?</strong></p>
+<p>For each class, I compute:</p>
+<p><span class="math display">\[
+\text{score}_j = \%\text{best}_j - \%\text{worst}_j
+\]</span></p>
+<p>This score is centered around zero:</p>
+<ul>
+<li>A <span class="blue-soft">positive score</span> means the class is chosen as best more often than worst.</li>
+<li>A <span class="blue-soft">negative score</span> means the class is chosen as worst more often than best.</li>
+<li>A score near zero means the class is either neutral or mixed: it wins and loses at similar rates.</li>
+</ul>
+<p>The key advantage is interpretability. For example, if a class has a score of 0.50, that means its best-pick rate is 50 percentage points higher than its worst-pick rate. The key limitation is that this is still a descriptive score. It does not directly model the probability of each best and worst choice conditional on the other items shown on that exact screen.</p>
+<div id="cell-counts-analysis" class="cell" data-execution_count="6">
+<div id="counts-analysis" class="cell-output cell-output-display">
+<style type="text/css">
+#T_29ee9 th {
+  background-color: #eaf4ff;
+  color: #0b4f9f;
+  font-weight: 700;
+  border-bottom: 2px solid #cfe5ff;
+}
+#T_29ee9 td {
+  border-bottom: 1px solid #e3efff;
+  padding: 6px 10px;
+}
+#T_29ee9 tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+#T_29ee9 caption {
+  caption-side: top;
+  color: #0b4f9f;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35rem 0;
+}
+#T_29ee9_row0_col7 {
+  background-color: #08306b;
+  color: #f1f1f1;
+}
+#T_29ee9_row1_col7 {
+  background-color: #5aa2cf;
+  color: #f1f1f1;
+}
+#T_29ee9_row2_col7 {
+  background-color: #63a8d3;
+  color: #f1f1f1;
+}
+#T_29ee9_row3_col7 {
+  background-color: #7fb9da;
+  color: #000000;
+}
+#T_29ee9_row4_col7 {
+  background-color: #9ac8e0;
+  color: #000000;
+}
+#T_29ee9_row5_col7 {
+  background-color: #a0cbe2;
+  color: #000000;
+}
+#T_29ee9_row6_col7 {
+  background-color: #ccdff1;
+  color: #000000;
+}
+#T_29ee9_row7_col7 {
+  background-color: #e2edf8;
+  color: #000000;
+}
+#T_29ee9_row8_col7 {
+  background-color: #e3eef9;
+  color: #000000;
+}
+#T_29ee9_row9_col7 {
+  background-color: #f7fbff;
+  color: #000000;
+}
+</style>
+
+<div id="T_29ee9" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_29ee9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Counts-based preference ranking
+</figcaption>
+<div aria-describedby="T_29ee9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_29ee9" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_29ee9_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">item</th>
+<th id="T_29ee9_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">short_label</th>
+<th id="T_29ee9_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">times_shown</th>
+<th id="T_29ee9_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">times_best</th>
+<th id="T_29ee9_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">times_worst</th>
+<th id="T_29ee9_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">pct_best</th>
+<th id="T_29ee9_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">pct_worst</th>
+<th id="T_29ee9_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">counts_score</th>
+<th id="T_29ee9_level0_col8" class="col_heading level0 col8" data-quarto-table-cell-role="th">counts_rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_29ee9_row0_col0" class="data row0 col0">9</td>
+<td id="T_29ee9_row0_col1" class="data row0 col1">Marketing Analytics</td>
+<td id="T_29ee9_row0_col2" class="data row0 col2">274</td>
+<td id="T_29ee9_row0_col3" class="data row0 col3">147</td>
+<td id="T_29ee9_row0_col4" class="data row0 col4">12</td>
+<td id="T_29ee9_row0_col5" class="data row0 col5">53.6%</td>
+<td id="T_29ee9_row0_col6" class="data row0 col6">4.4%</td>
+<td id="T_29ee9_row0_col7" class="data row0 col7">0.493</td>
+<td id="T_29ee9_row0_col8" class="data row0 col8">1</td>
+</tr>
+<tr class="even">
+<td id="T_29ee9_row1_col0" class="data row1 col0">5</td>
+<td id="T_29ee9_row1_col1" class="data row1 col1">Business Analytics</td>
+<td id="T_29ee9_row1_col2" class="data row1 col2">270</td>
+<td id="T_29ee9_row1_col3" class="data row1 col3">93</td>
+<td id="T_29ee9_row1_col4" class="data row1 col4">55</td>
+<td id="T_29ee9_row1_col5" class="data row1 col5">34.4%</td>
+<td id="T_29ee9_row1_col6" class="data row1 col6">20.4%</td>
+<td id="T_29ee9_row1_col7" class="data row1 col7">0.141</td>
+<td id="T_29ee9_row1_col8" class="data row1 col8">2</td>
+</tr>
+<tr class="odd">
+<td id="T_29ee9_row2_col0" class="data row2 col0">7</td>
+<td id="T_29ee9_row2_col1" class="data row2 col1">Customer Analytics</td>
+<td id="T_29ee9_row2_col2" class="data row2 col2">276</td>
+<td id="T_29ee9_row2_col3" class="data row2 col3">104</td>
+<td id="T_29ee9_row2_col4" class="data row2 col4">71</td>
+<td id="T_29ee9_row2_col5" class="data row2 col5">37.7%</td>
+<td id="T_29ee9_row2_col6" class="data row2 col6">25.7%</td>
+<td id="T_29ee9_row2_col7" class="data row2 col7">0.120</td>
+<td id="T_29ee9_row2_col8" class="data row2 col8">3</td>
+</tr>
+<tr class="even">
+<td id="T_29ee9_row3_col0" class="data row3 col0">4</td>
+<td id="T_29ee9_row3_col1" class="data row3 col1">Large Data</td>
+<td id="T_29ee9_row3_col2" class="data row3 col2">276</td>
+<td id="T_29ee9_row3_col3" class="data row3 col3">77</td>
+<td id="T_29ee9_row3_col4" class="data row3 col4">60</td>
+<td id="T_29ee9_row3_col5" class="data row3 col5">27.9%</td>
+<td id="T_29ee9_row3_col6" class="data row3 col6">21.7%</td>
+<td id="T_29ee9_row3_col7" class="data row3 col7">0.062</td>
+<td id="T_29ee9_row3_col8" class="data row3 col8">4</td>
+</tr>
+<tr class="odd">
+<td id="T_29ee9_row4_col0" class="data row4 col0">8</td>
+<td id="T_29ee9_row4_col1" class="data row4 col1">Capstone</td>
+<td id="T_29ee9_row4_col2" class="data row4 col2">272</td>
+<td id="T_29ee9_row4_col3" class="data row4 col3">72</td>
+<td id="T_29ee9_row4_col4" class="data row4 col4">69</td>
+<td id="T_29ee9_row4_col5" class="data row4 col5">26.5%</td>
+<td id="T_29ee9_row4_col6" class="data row4 col6">25.4%</td>
+<td id="T_29ee9_row4_col7" class="data row4 col7">0.011</td>
+<td id="T_29ee9_row4_col8" class="data row4 col8">5</td>
+</tr>
+<tr class="even">
+<td id="T_29ee9_row5_col0" class="data row5 col0">2</td>
+<td id="T_29ee9_row5_col1" class="data row5 col1">SQL</td>
+<td id="T_29ee9_row5_col2" class="data row5 col2">274</td>
+<td id="T_29ee9_row5_col3" class="data row5 col3">55</td>
+<td id="T_29ee9_row5_col4" class="data row5 col4">56</td>
+<td id="T_29ee9_row5_col5" class="data row5 col5">20.1%</td>
+<td id="T_29ee9_row5_col6" class="data row5 col6">20.4%</td>
+<td id="T_29ee9_row5_col7" class="data row5 col7">-0.004</td>
+<td id="T_29ee9_row5_col8" class="data row5 col8">6</td>
+</tr>
+<tr class="odd">
+<td id="T_29ee9_row6_col0" class="data row6 col0">10</td>
+<td id="T_29ee9_row6_col1" class="data row6 col1">BI Systems</td>
+<td id="T_29ee9_row6_col2" class="data row6 col2">266</td>
+<td id="T_29ee9_row6_col3" class="data row6 col3">23</td>
+<td id="T_29ee9_row6_col4" class="data row6 col4">55</td>
+<td id="T_29ee9_row6_col5" class="data row6 col5">8.6%</td>
+<td id="T_29ee9_row6_col6" class="data row6 col6">20.7%</td>
+<td id="T_29ee9_row6_col7" class="data row6 col7">-0.120</td>
+<td id="T_29ee9_row6_col8" class="data row6 col8">7</td>
+</tr>
+<tr class="even">
+<td id="T_29ee9_row7_col0" class="data row7 col0">1</td>
+<td id="T_29ee9_row7_col1" class="data row7 col1">AI Math / Programming</td>
+<td id="T_29ee9_row7_col2" class="data row7 col2">273</td>
+<td id="T_29ee9_row7_col3" class="data row7 col3">33</td>
+<td id="T_29ee9_row7_col4" class="data row7 col4">90</td>
+<td id="T_29ee9_row7_col5" class="data row7 col5">12.1%</td>
+<td id="T_29ee9_row7_col6" class="data row7 col6">33.0%</td>
+<td id="T_29ee9_row7_col7" class="data row7 col7">-0.209</td>
+<td id="T_29ee9_row7_col8" class="data row7 col8">8</td>
+</tr>
+<tr class="odd">
+<td id="T_29ee9_row8_col0" class="data row8 col0">3</td>
+<td id="T_29ee9_row8_col1" class="data row8 col1">Mkt/Fin/Ops</td>
+<td id="T_29ee9_row8_col2" class="data row8 col2">272</td>
+<td id="T_29ee9_row8_col3" class="data row8 col3">43</td>
+<td id="T_29ee9_row8_col4" class="data row8 col4">101</td>
+<td id="T_29ee9_row8_col5" class="data row8 col5">15.8%</td>
+<td id="T_29ee9_row8_col6" class="data row8 col6">37.1%</td>
+<td id="T_29ee9_row8_col7" class="data row8 col7">-0.213</td>
+<td id="T_29ee9_row8_col8" class="data row8 col8">9</td>
+</tr>
+<tr class="even">
+<td id="T_29ee9_row9_col0" class="data row9 col0">6</td>
+<td id="T_29ee9_row9_col1" class="data row9 col1">Analytics Consulting</td>
+<td id="T_29ee9_row9_col2" class="data row9 col2">267</td>
+<td id="T_29ee9_row9_col3" class="data row9 col3">33</td>
+<td id="T_29ee9_row9_col4" class="data row9 col4">111</td>
+<td id="T_29ee9_row9_col5" class="data row9 col5">12.4%</td>
+<td id="T_29ee9_row9_col6" class="data row9 col6">41.6%</td>
+<td id="T_29ee9_row9_col7" class="data row9 col7">-0.292</td>
+<td id="T_29ee9_row9_col8" class="data row9 col8">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<section id="adding-bootstrap-confidence-intervals" class="level3">
+<h3 class="anchored" data-anchor-id="adding-bootstrap-confidence-intervals">Adding bootstrap confidence intervals</h3>
+<p>The table above gives a point estimate for each counts score. But a point estimate alone does not show how stable the score is. To add uncertainty, I use a <span class="blue-soft">respondent-level bootstrap</span>. The unit of resampling is the respondent, not the individual row, because each respondent answered multiple tasks and those answers are related.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bootstrap step</th>
+<th>What happens</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1. Resample respondents</strong></td>
+<td>Randomly sample 85 respondents with replacement. Some students appear more than once; some are left out.</td>
+<td>This mimics drawing a new sample of students from the same population.</td>
+</tr>
+<tr class="even">
+<td><strong>2. Recompute the counts score</strong></td>
+<td>For each resampled dataset, calculate <code>% best - % worst</code> for every class.</td>
+<td>This shows how the score would move if the sample were slightly different.</td>
+</tr>
+<tr class="odd">
+<td><strong>3. Repeat 1,000 times</strong></td>
+<td>Store 1,000 bootstrap scores for each class.</td>
+<td>A distribution of scores is more informative than one number.</td>
+</tr>
+<tr class="even">
+<td><strong>4. Take percentiles</strong></td>
+<td>Use the 2.5th and 97.5th percentiles as the 95% interval.</td>
+<td>This gives an approximate uncertainty band around each score.</td>
+</tr>
+</tbody>
+</table>
+<div id="cell-counts-bootstrap" class="cell" data-execution_count="7">
+<div id="counts-bootstrap" class="cell-output cell-output-display">
+<style type="text/css">
+#T_290dd th {
+  background-color: #eaf4ff;
+  color: #0b4f9f;
+  font-weight: 700;
+  border-bottom: 2px solid #cfe5ff;
+}
+#T_290dd td {
+  border-bottom: 1px solid #e3efff;
+  padding: 6px 10px;
+}
+#T_290dd tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+#T_290dd caption {
+  caption-side: top;
+  color: #0b4f9f;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35rem 0;
+}
+#T_290dd_row0_col1 {
+  background-color: #08306b;
+  color: #f1f1f1;
+}
+#T_290dd_row1_col1 {
+  background-color: #5aa2cf;
+  color: #f1f1f1;
+}
+#T_290dd_row2_col1 {
+  background-color: #63a8d3;
+  color: #f1f1f1;
+}
+#T_290dd_row3_col1 {
+  background-color: #7fb9da;
+  color: #000000;
+}
+#T_290dd_row4_col1 {
+  background-color: #9ac8e0;
+  color: #000000;
+}
+#T_290dd_row5_col1 {
+  background-color: #a0cbe2;
+  color: #000000;
+}
+#T_290dd_row6_col1 {
+  background-color: #ccdff1;
+  color: #000000;
+}
+#T_290dd_row7_col1 {
+  background-color: #e2edf8;
+  color: #000000;
+}
+#T_290dd_row8_col1 {
+  background-color: #e3eef9;
+  color: #000000;
+}
+#T_290dd_row9_col1 {
+  background-color: #f7fbff;
+  color: #000000;
+}
+</style>
+
+<div id="T_290dd" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_290dd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5: Counts score with respondent-level bootstrap 95% intervals
+</figcaption>
+<div aria-describedby="T_290dd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_290dd" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_290dd_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">short_label</th>
+<th id="T_290dd_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">counts_score</th>
+<th id="T_290dd_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">score_ci_low</th>
+<th id="T_290dd_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">score_ci_high</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_290dd_row0_col0" class="data row0 col0">Marketing Analytics</td>
+<td id="T_290dd_row0_col1" class="data row0 col1">0.493</td>
+<td id="T_290dd_row0_col2" class="data row0 col2">0.407</td>
+<td id="T_290dd_row0_col3" class="data row0 col3">0.577</td>
+</tr>
+<tr class="even">
+<td id="T_290dd_row1_col0" class="data row1 col0">Business Analytics</td>
+<td id="T_290dd_row1_col1" class="data row1 col1">0.141</td>
+<td id="T_290dd_row1_col2" class="data row1 col2">-0.004</td>
+<td id="T_290dd_row1_col3" class="data row1 col3">0.270</td>
+</tr>
+<tr class="odd">
+<td id="T_290dd_row2_col0" class="data row2 col0">Customer Analytics</td>
+<td id="T_290dd_row2_col1" class="data row2 col1">0.120</td>
+<td id="T_290dd_row2_col2" class="data row2 col2">-0.029</td>
+<td id="T_290dd_row2_col3" class="data row2 col3">0.258</td>
+</tr>
+<tr class="even">
+<td id="T_290dd_row3_col0" class="data row3 col0">Large Data</td>
+<td id="T_290dd_row3_col1" class="data row3 col1">0.062</td>
+<td id="T_290dd_row3_col2" class="data row3 col2">-0.059</td>
+<td id="T_290dd_row3_col3" class="data row3 col3">0.181</td>
+</tr>
+<tr class="odd">
+<td id="T_290dd_row4_col0" class="data row4 col0">Capstone</td>
+<td id="T_290dd_row4_col1" class="data row4 col1">0.011</td>
+<td id="T_290dd_row4_col2" class="data row4 col2">-0.122</td>
+<td id="T_290dd_row4_col3" class="data row4 col3">0.137</td>
+</tr>
+<tr class="even">
+<td id="T_290dd_row5_col0" class="data row5 col0">SQL</td>
+<td id="T_290dd_row5_col1" class="data row5 col1">-0.004</td>
+<td id="T_290dd_row5_col2" class="data row5 col2">-0.107</td>
+<td id="T_290dd_row5_col3" class="data row5 col3">0.106</td>
+</tr>
+<tr class="odd">
+<td id="T_290dd_row6_col0" class="data row6 col0">BI Systems</td>
+<td id="T_290dd_row6_col1" class="data row6 col1">-0.120</td>
+<td id="T_290dd_row6_col2" class="data row6 col2">-0.202</td>
+<td id="T_290dd_row6_col3" class="data row6 col3">-0.033</td>
+</tr>
+<tr class="even">
+<td id="T_290dd_row7_col0" class="data row7 col0">AI Math / Programming</td>
+<td id="T_290dd_row7_col1" class="data row7 col1">-0.209</td>
+<td id="T_290dd_row7_col2" class="data row7 col2">-0.311</td>
+<td id="T_290dd_row7_col3" class="data row7 col3">-0.111</td>
+</tr>
+<tr class="odd">
+<td id="T_290dd_row8_col0" class="data row8 col0">Mkt/Fin/Ops</td>
+<td id="T_290dd_row8_col1" class="data row8 col1">-0.213</td>
+<td id="T_290dd_row8_col2" class="data row8 col2">-0.327</td>
+<td id="T_290dd_row8_col3" class="data row8 col3">-0.099</td>
+</tr>
+<tr class="even">
+<td id="T_290dd_row9_col0" class="data row9 col0">Analytics Consulting</td>
+<td id="T_290dd_row9_col1" class="data row9 col1">-0.292</td>
+<td id="T_290dd_row9_col2" class="data row9 col2">-0.397</td>
+<td id="T_290dd_row9_col3" class="data row9 col3">-0.187</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-counts-plot" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div id="counts-plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/counts-plot-output-1.png" width="757" height="470" class="figure-img"></p>
+<figcaption>Counts score by class, with respondent-level bootstrap 95% confidence intervals</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interpreting-the-counts-results" class="level3">
+<h3 class="anchored" data-anchor-id="interpreting-the-counts-results">Interpreting the counts results</h3>
+<p>The counts analysis has a clear top and bottom. <span class="blue-text">Marketing Analytics</span> is the strongest class by a large margin: it is picked best in <strong>53.6%</strong> of appearances and worst in only <strong>4.4%</strong>. Its counts score is <strong>0.493</strong>, meaning the best-pick rate is about <strong>49 percentage points</strong> higher than the worst-pick rate.</p>
+<p>The next group is <strong>Business Analytics</strong>, <strong>Customer Analytics</strong>, and <strong>Large Data</strong>. Their scores are positive, but they are much closer to the middle than Marketing Analytics. This suggests students like them, but not with the same overwhelming strength.</p>
+<p>The least preferred classes by this descriptive score are <strong>Analytics Consulting</strong>, <strong>Marketing/Finance/Operations</strong>, and <strong>AI Math / Programming</strong>. These classes have negative scores because they are selected as worst more often than best.</p>
+<p>The bootstrap intervals add the most important caution. Marketing Analytics has an interval that stays far above zero, so its lead is very stable. Several middle classes have intervals that cross or come close to zero, which means their exact ranks are less certain. In other words, the top and bottom are meaningful; small differences in the middle should be treated carefully.</p>
+</section>
+</section>
+<section id="from-maxdiff-data-to-mnl-choices" class="level2">
+<h2 class="anchored" data-anchor-id="from-maxdiff-data-to-mnl-choices">From MaxDiff Data to MNL Choices</h2>
+<p>The counts score is helpful, but it is not yet a choice model. The <span class="blue-text">multinomial logit (MNL)</span> model goes one step deeper: it tries to explain the actual choices on each screen using a utility value for each class.</p>
+<p>The idea is simple. Every class has an underlying utility number, called <span class="math inline">\(\beta_j\)</span>. Higher utility means the class is more likely to be selected as best. Lower utility means it is more likely to be selected as worst. We do not observe utility directly; we infer it from repeated choices.</p>
+<p>For a screen with four classes <span class="math inline">\(\{a,b,c,d\}\)</span>, the probability that class <span class="math inline">\(b\)</span> is selected as best is:</p>
+<p><span class="math display">\[
+P(\text{best}=b) = \frac{\exp(\beta_b)}{\exp(\beta_a)+\exp(\beta_b)+\exp(\beta_c)+\exp(\beta_d)}.
+\]</span></p>
+<p>This is a <strong>soft-max</strong> formula. It converts utilities into probabilities. A class with higher utility gets a larger probability, but every displayed class still has some chance of being selected.</p>
+<p>After the best item is chosen, I remove it from the screen and model the worst choice among the remaining three. The worst choice uses <span class="blue-soft">negative utility</span>, because low-utility items should be more likely to be selected as worst:</p>
+<p><span class="math display">\[
+P(\text{worst}=c \mid \text{best}=b) =
+\frac{\exp(-\beta_c)}{\sum_{j \in \text{shown}\setminus\{b\}} \exp(-\beta_j)}.
+\]</span></p>
+<p>So each MaxDiff screen contributes two pieces of information:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Choice step</th>
+<th>Choice set</th>
+<th>Model logic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Best choice</strong></td>
+<td>All 4 displayed classes</td>
+<td>Higher <span class="math inline">\(\beta\)</span> means more likely to be picked best.</td>
+</tr>
+<tr class="even">
+<td><strong>Worst choice</strong></td>
+<td>The 3 remaining classes after removing the best</td>
+<td>Lower <span class="math inline">\(\beta\)</span> means more likely to be picked worst.</td>
+</tr>
+</tbody>
+</table>
+<p>There is one identification issue. If the same constant is added to every <span class="math inline">\(\beta\)</span>, the probabilities do not change. That means only <strong>relative utility differences</strong> are identified. I handle this by setting <span class="math inline">\(\beta_1=0\)</span> and estimating <span class="math inline">\(\beta_2, \ldots, \beta_{10}\)</span> relative to that reference class.</p>
+<div id="cell-make-task-arrays" class="cell" data-execution_count="9">
+<div id="make-task-arrays" class="cell-output cell-output-display">
+<style type="text/css">
+#T_ec131 th {
+  background-color: #eaf4ff;
+  color: #0b4f9f;
+  font-weight: 700;
+  border-bottom: 2px solid #cfe5ff;
+}
+#T_ec131 td {
+  border-bottom: 1px solid #e3efff;
+  padding: 6px 10px;
+}
+#T_ec131 tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+#T_ec131 caption {
+  caption-side: top;
+  color: #0b4f9f;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35rem 0;
+}
+</style>
+
+<div id="T_ec131" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_ec131-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6: Data arrays used by the MNL likelihood
+</figcaption>
+<div aria-describedby="T_ec131-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_ec131" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_ec131_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Quantity</th>
+<th id="T_ec131_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_ec131_row0_col0" class="data row0 col0">Task screens</td>
+<td id="T_ec131_row0_col1" class="data row0 col1">680</td>
+</tr>
+<tr class="even">
+<td id="T_ec131_row1_col0" class="data row1 col0">Rows per screen</td>
+<td id="T_ec131_row1_col1" class="data row1 col1">4</td>
+</tr>
+<tr class="odd">
+<td id="T_ec131_row2_col0" class="data row2 col0">Estimated beta parameters</td>
+<td id="T_ec131_row2_col1" class="data row2 col1">9</td>
+</tr>
+<tr class="even">
+<td id="T_ec131_row3_col0" class="data row3 col0">Pinned reference beta</td>
+<td id="T_ec131_row3_col1" class="data row3 col1">beta_1 = 0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mnl-via-maximum-likelihood" class="level2">
+<h2 class="anchored" data-anchor-id="mnl-via-maximum-likelihood">MNL via Maximum Likelihood</h2>
+<p>Maximum likelihood estimation chooses the utility values that make the observed data as likely as possible. In plain English, the model asks:</p>
+<div class="blue-box">
+<p>Which set of class utilities would make students most likely to choose exactly the best and worst classes that they actually chose?</p>
+</div>
+<p>For one task screen, the log-likelihood contribution is the log probability of the observed best choice plus the log probability of the observed worst choice. Summing over all 680 screens gives:</p>
+<p><span class="math display">\[
+\ell(\boldsymbol{\beta}) = \sum_{\text{tasks}} \left[
+\beta_{j_b^*} - \log \sum_{j \in \text{shown}} \exp(\beta_j)
+- \beta_{j_w^*} - \log \sum_{j \in \text{shown}\setminus\{j_b^*\}} \exp(-\beta_j)
+\right].
+\]</span></p>
+<p>Here <span class="math inline">\(j_b^*\)</span> is the observed best item and <span class="math inline">\(j_w^*\)</span> is the observed worst item. The first half rewards the model for assigning high utility to the observed best item. The second half rewards the model for assigning low utility to the observed worst item.</p>
+<section id="estimation-steps" class="level3">
+<h3 class="anchored" data-anchor-id="estimation-steps">Estimation steps</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What I do in code</th>
+<th>Why it is needed</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1. Build <code>full_beta</code></strong></td>
+<td>Insert the pinned reference value <span class="math inline">\(\beta_1=0\)</span> before the nine estimated coefficients.</td>
+<td>The model needs utilities for all 10 classes, but only 9 are freely estimated.</td>
+</tr>
+<tr class="even">
+<td><strong>2. Compute best-choice probability</strong></td>
+<td>Use the soft-max over the 4 displayed utilities.</td>
+<td>This models which class wins on the screen.</td>
+</tr>
+<tr class="odd">
+<td><strong>3. Compute worst-choice probability</strong></td>
+<td>Use soft-max over negative utilities for the 3 remaining classes.</td>
+<td>This models which class loses after the best class is removed.</td>
+</tr>
+<tr class="even">
+<td><strong>4. Sum log probabilities</strong></td>
+<td>Add best and worst log probabilities across all task screens.</td>
+<td>The optimizer needs one objective function to maximize.</td>
+</tr>
+<tr class="odd">
+<td><strong>5. Minimize negative log-likelihood</strong></td>
+<td>Use <code>scipy.optimize.minimize</code> with BFGS.</td>
+<td>Python minimizes by default, so minimizing <code>-ll</code> is equivalent to maximizing <code>ll</code>.</td>
+</tr>
+</tbody>
+</table>
+<div id="mnl-functions" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> full_beta(theta):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Insert the pinned beta_1 = 0 in front of the 9 estimated parameters."""</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> np.zeros(<span class="dv">10</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    beta[<span class="dv">1</span>:] <span class="op">=</span> theta</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> beta</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> row_logsumexp(A):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Stable row-wise log-sum-exp for a small 2D array."""</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> np.<span class="bu">max</span>(A, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> m <span class="op">+</span> np.log(np.exp(A <span class="op">-</span> m[:, <span class="va">None</span>]).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ll(theta):</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Sequential best-worst MNL log-likelihood."""</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> full_beta(theta)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Utilities for the 4 items shown on each task screen.</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> beta[shown_idx]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Best choice likelihood from all 4 shown items.</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    ll_best <span class="op">=</span> beta[best_idx] <span class="op">-</span> row_logsumexp(V)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Worst choice likelihood from the remaining 3 items after removing the best item.</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    ll_worst <span class="op">=</span> <span class="op">-</span>beta[worst_idx] <span class="op">-</span> row_logsumexp(<span class="op">-</span>beta[remaining_idx])</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">float</span>(np.<span class="bu">sum</span>(ll_best <span class="op">+</span> ll_worst))</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nll(theta):</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Negative log-likelihood because scipy minimizes by default."""</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>ll(theta)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="cell-mle-output-table" class="cell" data-execution_count="12">
+<div id="mle-output-table" class="cell-output cell-output-display">
+<style type="text/css">
+#T_4a28f th {
+  background-color: #eaf4ff;
+  color: #0b4f9f;
+  font-weight: 700;
+  border-bottom: 2px solid #cfe5ff;
+}
+#T_4a28f td {
+  border-bottom: 1px solid #e3efff;
+  padding: 6px 10px;
+}
+#T_4a28f tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+#T_4a28f caption {
+  caption-side: top;
+  color: #0b4f9f;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35rem 0;
+}
+#T_4a28f_row0_col4 {
+  background-color: #08306b;
+  color: #f1f1f1;
+}
+#T_4a28f_row1_col4 {
+  background-color: #b4d3e9;
+  color: #000000;
+}
+#T_4a28f_row2_col4 {
+  background-color: #c2d9ee;
+  color: #000000;
+}
+#T_4a28f_row3_col4 {
+  background-color: #ccdff1;
+  color: #000000;
+}
+#T_4a28f_row4_col4, #T_4a28f_row5_col4 {
+  background-color: #d4e4f4;
+  color: #000000;
+}
+#T_4a28f_row6_col4 {
+  background-color: #e1edf8;
+  color: #000000;
+}
+#T_4a28f_row7_col4 {
+  background-color: #eef5fc;
+  color: #000000;
+}
+#T_4a28f_row8_col4 {
+  background-color: #f1f7fd;
+  color: #000000;
+}
+#T_4a28f_row9_col4 {
+  background-color: #f7fbff;
+  color: #000000;
+}
+</style>
+
+<div id="T_4a28f" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_4a28f-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7: Maximum-likelihood MNL estimates
+</figcaption>
+<div aria-describedby="T_4a28f-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_4a28f" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_4a28f_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">item</th>
+<th id="T_4a28f_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">short_label</th>
+<th id="T_4a28f_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">beta_mle</th>
+<th id="T_4a28f_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">se_mle</th>
+<th id="T_4a28f_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">share_mle</th>
+<th id="T_4a28f_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">mle_rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_4a28f_row0_col0" class="data row0 col0">9</td>
+<td id="T_4a28f_row0_col1" class="data row0 col1">Marketing Analytics</td>
+<td id="T_4a28f_row0_col2" class="data row0 col2">1.630</td>
+<td id="T_4a28f_row0_col3" class="data row0 col3">0.146</td>
+<td id="T_4a28f_row0_col4" class="data row0 col4">28.4%</td>
+<td id="T_4a28f_row0_col5" class="data row0 col5">1</td>
+</tr>
+<tr class="even">
+<td id="T_4a28f_row1_col0" class="data row1 col0">5</td>
+<td id="T_4a28f_row1_col1" class="data row1 col1">Business Analytics</td>
+<td id="T_4a28f_row1_col2" class="data row1 col2">0.744</td>
+<td id="T_4a28f_row1_col3" class="data row1 col3">0.142</td>
+<td id="T_4a28f_row1_col4" class="data row1 col4">11.7%</td>
+<td id="T_4a28f_row1_col5" class="data row1 col5">2</td>
+</tr>
+<tr class="odd">
+<td id="T_4a28f_row2_col0" class="data row2 col0">7</td>
+<td id="T_4a28f_row2_col1" class="data row2 col1">Customer Analytics</td>
+<td id="T_4a28f_row2_col2" class="data row2 col2">0.656</td>
+<td id="T_4a28f_row2_col3" class="data row2 col3">0.142</td>
+<td id="T_4a28f_row2_col4" class="data row2 col4">10.7%</td>
+<td id="T_4a28f_row2_col5" class="data row2 col5">3</td>
+</tr>
+<tr class="even">
+<td id="T_4a28f_row3_col0" class="data row3 col0">4</td>
+<td id="T_4a28f_row3_col1" class="data row3 col1">Large Data</td>
+<td id="T_4a28f_row3_col2" class="data row3 col2">0.555</td>
+<td id="T_4a28f_row3_col3" class="data row3 col3">0.140</td>
+<td id="T_4a28f_row3_col4" class="data row3 col4">9.7%</td>
+<td id="T_4a28f_row3_col5" class="data row3 col5">4</td>
+</tr>
+<tr class="odd">
+<td id="T_4a28f_row4_col0" class="data row4 col0">8</td>
+<td id="T_4a28f_row4_col1" class="data row4 col1">Capstone</td>
+<td id="T_4a28f_row4_col2" class="data row4 col2">0.443</td>
+<td id="T_4a28f_row4_col3" class="data row4 col3">0.140</td>
+<td id="T_4a28f_row4_col4" class="data row4 col4">8.7%</td>
+<td id="T_4a28f_row4_col5" class="data row4 col5">5</td>
+</tr>
+<tr class="even">
+<td id="T_4a28f_row5_col0" class="data row5 col0">2</td>
+<td id="T_4a28f_row5_col1" class="data row5 col1">SQL</td>
+<td id="T_4a28f_row5_col2" class="data row5 col2">0.438</td>
+<td id="T_4a28f_row5_col3" class="data row5 col3">0.137</td>
+<td id="T_4a28f_row5_col4" class="data row5 col4">8.6%</td>
+<td id="T_4a28f_row5_col5" class="data row5 col5">6</td>
+</tr>
+<tr class="odd">
+<td id="T_4a28f_row6_col0" class="data row6 col0">10</td>
+<td id="T_4a28f_row6_col1" class="data row6 col1">BI Systems</td>
+<td id="T_4a28f_row6_col2" class="data row6 col2">0.236</td>
+<td id="T_4a28f_row6_col3" class="data row6 col3">0.137</td>
+<td id="T_4a28f_row6_col4" class="data row6 col4">7.0%</td>
+<td id="T_4a28f_row6_col5" class="data row6 col5">7</td>
+</tr>
+<tr class="even">
+<td id="T_4a28f_row7_col0" class="data row7 col0">1</td>
+<td id="T_4a28f_row7_col1" class="data row7 col1">AI Math / Programming</td>
+<td id="T_4a28f_row7_col2" class="data row7 col2">0.000</td>
+<td id="T_4a28f_row7_col3" class="data row7 col3">--</td>
+<td id="T_4a28f_row7_col4" class="data row7 col4">5.6%</td>
+<td id="T_4a28f_row7_col5" class="data row7 col5">8</td>
+</tr>
+<tr class="odd">
+<td id="T_4a28f_row8_col0" class="data row8 col0">3</td>
+<td id="T_4a28f_row8_col1" class="data row8 col1">Mkt/Fin/Ops</td>
+<td id="T_4a28f_row8_col2" class="data row8 col2">-0.067</td>
+<td id="T_4a28f_row8_col3" class="data row8 col3">0.139</td>
+<td id="T_4a28f_row8_col4" class="data row8 col4">5.2%</td>
+<td id="T_4a28f_row8_col5" class="data row8 col5">9</td>
+</tr>
+<tr class="even">
+<td id="T_4a28f_row9_col0" class="data row9 col0">6</td>
+<td id="T_4a28f_row9_col1" class="data row9 col1">Analytics Consulting</td>
+<td id="T_4a28f_row9_col2" class="data row9 col2">-0.239</td>
+<td id="T_4a28f_row9_col3" class="data row9 col3">0.141</td>
+<td id="T_4a28f_row9_col4" class="data row9 col4">4.4%</td>
+<td id="T_4a28f_row9_col5" class="data row9 col5">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>The MLE converged successfully. The coefficients are relative to item 1, <strong>AI Math / Programming</strong>, because <span class="math inline">\(\beta_1\)</span> is pinned to zero. A positive coefficient means the class is preferred to AI Math / Programming on the model’s utility scale. A negative coefficient means it is less preferred.</p>
+<p>The share column is easier to explain than the raw <span class="math inline">\(\beta\)</span> values. It answers a hypothetical question: <strong>if all 10 classes were shown together, what share of best choices would each class receive under the model?</strong> Under this interpretation, <span class="blue-text">Marketing Analytics</span> receives about <strong>28.4%</strong> of the preference share, far above the next classes.</p>
+<div id="cell-mle-share-plot" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<div id="mle-share-plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/mle-share-plot-output-1.png" width="757" height="470" class="figure-img"></p>
+<figcaption>MNL maximum-likelihood shares of preference</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The MLE ranking is almost identical to the counts ranking. Marketing Analytics is still first, followed by Business Analytics, Customer Analytics, and Large Data. The small differences are in the middle, where utilities are closer together. For example, SQL and Capstone are extremely close, so their exact order is not substantively important.</p>
+</section>
+</section>
+<section id="mnl-via-bayesian-estimation" class="level2">
+<h2 class="anchored" data-anchor-id="mnl-via-bayesian-estimation">MNL via Bayesian Estimation</h2>
+<p>The Bayesian model uses the same choice likelihood as the MLE model, but it adds a prior and produces a posterior distribution. Instead of returning only one best estimate for each <span class="math inline">\(\beta\)</span>, it returns many plausible draws of <span class="math inline">\(\beta\)</span> after seeing the data.</p>
+<p><span class="math display">\[
+\pi(\boldsymbol{\beta}\mid \boldsymbol{y}) \propto L(\boldsymbol{\beta})\pi(\boldsymbol{\beta}).
+\]</span></p>
+<p>I use a weakly informative normal prior on the nine estimated utility parameters:</p>
+<p><span class="math display">\[
+\boldsymbol{\beta} \sim N(\boldsymbol{0}, 10I).
+\]</span></p>
+<p>This prior says that extremely large utility values are unlikely, but it is wide enough that the data still drive the result. The prior is mainly a stabilizer, not a strong assumption about which classes should win.</p>
+<section id="mcmc-steps" class="level3">
+<h3 class="anchored" data-anchor-id="mcmc-steps">MCMC steps</h3>
+<p>Because the posterior does not have a closed-form solution, I sample from it using a random-walk Metropolis-Hastings algorithm.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>What happens</th>
+<th>Intuition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1. Start near the MLE</strong></td>
+<td>Initialize the chain at the MLE estimate.</td>
+<td>This starts the sampler near a high-probability region.</td>
+</tr>
+<tr class="even">
+<td><strong>2. Propose a new beta vector</strong></td>
+<td>Add small random noise to the current beta vector.</td>
+<td>This creates a nearby candidate set of utilities.</td>
+</tr>
+<tr class="odd">
+<td><strong>3. Compare posterior values</strong></td>
+<td>Compute the posterior at the current and proposed beta values.</td>
+<td>Better candidates are usually accepted; worse candidates can still be accepted sometimes.</td>
+</tr>
+<tr class="even">
+<td><strong>4. Repeat many times</strong></td>
+<td>Run 20,000 iterations and drop the first 5,000 as burn-in.</td>
+<td>The remaining draws approximate the posterior distribution.</td>
+</tr>
+<tr class="odd">
+<td><strong>5. Convert each draw to shares</strong></td>
+<td>Apply the soft-max to every posterior draw.</td>
+<td>This gives uncertainty intervals for preference shares directly.</td>
+</tr>
+</tbody>
+</table>
+<div id="bayesian-functions" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>prior_sd <span class="op">=</span> np.sqrt(<span class="dv">10</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_post(theta):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Log posterior = log likelihood + log prior."""</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    log_prior <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> np.<span class="bu">sum</span>((theta <span class="op">/</span> prior_sd) <span class="op">**</span> <span class="dv">2</span>) <span class="op">-</span> <span class="bu">len</span>(theta) <span class="op">*</span> np.log(prior_sd <span class="op">*</span> np.sqrt(<span class="dv">2</span> <span class="op">*</span> np.pi))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ll(theta) <span class="op">+</span> log_prior</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mh(beta0, n_iter, step, seed<span class="op">=</span><span class="dv">495</span>):</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Random-walk Metropolis-Hastings sampler."""</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(seed)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    K <span class="op">=</span> <span class="bu">len</span>(beta0)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    draws <span class="op">=</span> np.empty((n_iter, K))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> beta0.copy()</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    lp <span class="op">=</span> log_post(beta)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    accept <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(n_iter):</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        beta_star <span class="op">=</span> beta <span class="op">+</span> rng.normal(<span class="dv">0</span>, step, size<span class="op">=</span>K)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        lp_star <span class="op">=</span> log_post(beta_star)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.log(rng.random()) <span class="op">&lt;</span> lp_star <span class="op">-</span> lp:</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            beta <span class="op">=</span> beta_star</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            lp <span class="op">=</span> lp_star</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            accept <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        draws[t, :] <span class="op">=</span> beta</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"draws"</span>: draws, <span class="st">"accept_rate"</span>: accept <span class="op">/</span> n_iter}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div id="cell-step-tuning" class="cell" data-execution_count="15">
+<div id="step-tuning" class="cell-output cell-output-display">
+<style type="text/css">
+#T_28a51 th {
+  background-color: #eaf4ff;
+  color: #0b4f9f;
+  font-weight: 700;
+  border-bottom: 2px solid #cfe5ff;
+}
+#T_28a51 td {
+  border-bottom: 1px solid #e3efff;
+  padding: 6px 10px;
+}
+#T_28a51 tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+#T_28a51 caption {
+  caption-side: top;
+  color: #0b4f9f;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35rem 0;
+}
+</style>
+
+<div id="T_28a51" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_28a51-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8: Pilot tuning for the Metropolis-Hastings proposal step
+</figcaption>
+<div aria-describedby="T_28a51-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_28a51" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_28a51_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">step</th>
+<th id="T_28a51_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">accept_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_28a51_row0_col0" class="data row0 col0">0.05</td>
+<td id="T_28a51_row0_col1" class="data row0 col1">48.2%</td>
+</tr>
+<tr class="even">
+<td id="T_28a51_row1_col0" class="data row1 col0">0.08</td>
+<td id="T_28a51_row1_col1" class="data row1 col1">28.4%</td>
+</tr>
+<tr class="odd">
+<td id="T_28a51_row2_col0" class="data row2 col0">0.10</td>
+<td id="T_28a51_row2_col1" class="data row2 col1">18.1%</td>
+</tr>
+<tr class="even">
+<td id="T_28a51_row3_col0" class="data row3 col0">0.12</td>
+<td id="T_28a51_row3_col1" class="data row3 col1">12.9%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<p>A proposal step of <strong>0.08</strong> gives an acceptance rate close to the target range, so I use that for the full run. The step size matters because it controls how aggressively the chain explores. If the step is too small, the chain moves slowly. If it is too large, too many proposed moves are rejected.</p>
+<div id="cell-mcmc-diagnostics-table" class="cell" data-execution_count="17">
+<div id="mcmc-diagnostics-table" class="cell-output cell-output-display">
+<style type="text/css">
+#T_458c1 th {
+  background-color: #eaf4ff;
+  color: #0b4f9f;
+  font-weight: 700;
+  border-bottom: 2px solid #cfe5ff;
+}
+#T_458c1 td {
+  border-bottom: 1px solid #e3efff;
+  padding: 6px 10px;
+}
+#T_458c1 tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+#T_458c1 caption {
+  caption-side: top;
+  color: #0b4f9f;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35rem 0;
+}
+</style>
+
+<div id="T_458c1" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_458c1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9: MCMC run summary
+</figcaption>
+<div aria-describedby="T_458c1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_458c1" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_458c1_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Quantity</th>
+<th id="T_458c1_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_458c1_row0_col0" class="data row0 col0">Iterations</td>
+<td id="T_458c1_row0_col1" class="data row0 col1">20000.0</td>
+</tr>
+<tr class="even">
+<td id="T_458c1_row1_col0" class="data row1 col0">Burn-in</td>
+<td id="T_458c1_row1_col1" class="data row1 col1">5000.0</td>
+</tr>
+<tr class="odd">
+<td id="T_458c1_row2_col0" class="data row2 col0">Post burn-in draws</td>
+<td id="T_458c1_row2_col1" class="data row2 col1">15000.0</td>
+</tr>
+<tr class="even">
+<td id="T_458c1_row3_col0" class="data row3 col0">Proposal step</td>
+<td id="T_458c1_row3_col1" class="data row3 col1">8.0%</td>
+</tr>
+<tr class="odd">
+<td id="T_458c1_row4_col0" class="data row4 col0">Acceptance rate</td>
+<td id="T_458c1_row4_col1" class="data row4 col1">28.9%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-trace-plots" class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display">
+<div id="trace-plots" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/trace-plots-output-1.png" width="863" height="566" class="figure-img"></p>
+<figcaption>Trace plots for three posterior beta parameters</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The trace plots look like fuzzy caterpillars after burn-in rather than slow monotonic drifts. The final acceptance rate is about <strong>29%</strong>, which is reasonable for this simple random-walk sampler. This does not prove perfect convergence, but it gives reasonable evidence that the sampler is exploring the high-posterior region rather than getting stuck.</p>
+<div id="cell-bayes-results" class="cell" data-execution_count="19">
+<div id="bayes-results" class="cell-output cell-output-display">
+<style type="text/css">
+#T_84183 th {
+  background-color: #eaf4ff;
+  color: #0b4f9f;
+  font-weight: 700;
+  border-bottom: 2px solid #cfe5ff;
+}
+#T_84183 td {
+  border-bottom: 1px solid #e3efff;
+  padding: 6px 10px;
+}
+#T_84183 tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+#T_84183 caption {
+  caption-side: top;
+  color: #0b4f9f;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35rem 0;
+}
+#T_84183_row0_col5 {
+  background-color: #08306b;
+  color: #f1f1f1;
+}
+#T_84183_row1_col5 {
+  background-color: #b5d4e9;
+  color: #000000;
+}
+#T_84183_row2_col5 {
+  background-color: #c2d9ee;
+  color: #000000;
+}
+#T_84183_row3_col5 {
+  background-color: #ccdff1;
+  color: #000000;
+}
+#T_84183_row4_col5 {
+  background-color: #d4e4f4;
+  color: #000000;
+}
+#T_84183_row5_col5 {
+  background-color: #d5e5f4;
+  color: #000000;
+}
+#T_84183_row6_col5 {
+  background-color: #e1edf8;
+  color: #000000;
+}
+#T_84183_row7_col5 {
+  background-color: #eef5fc;
+  color: #000000;
+}
+#T_84183_row8_col5 {
+  background-color: #f1f7fd;
+  color: #000000;
+}
+#T_84183_row9_col5 {
+  background-color: #f7fbff;
+  color: #000000;
+}
+</style>
+
+<div id="T_84183" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_84183-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;10: Bayesian MNL posterior summaries
+</figcaption>
+<div aria-describedby="T_84183-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_84183" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_84183_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">item</th>
+<th id="T_84183_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">short_label</th>
+<th id="T_84183_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">beta_post_mean</th>
+<th id="T_84183_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">beta_ci_low</th>
+<th id="T_84183_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">beta_ci_high</th>
+<th id="T_84183_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">share_post_mean</th>
+<th id="T_84183_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">share_ci_low</th>
+<th id="T_84183_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">share_ci_high</th>
+<th id="T_84183_level0_col8" class="col_heading level0 col8" data-quarto-table-cell-role="th">bayes_rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_84183_row0_col0" class="data row0 col0">9</td>
+<td id="T_84183_row0_col1" class="data row0 col1">Marketing Analytics</td>
+<td id="T_84183_row0_col2" class="data row0 col2">1.642</td>
+<td id="T_84183_row0_col3" class="data row0 col3">1.351</td>
+<td id="T_84183_row0_col4" class="data row0 col4">1.950</td>
+<td id="T_84183_row0_col5" class="data row0 col5">28.4%</td>
+<td id="T_84183_row0_col6" class="data row0 col6">24.3%</td>
+<td id="T_84183_row0_col7" class="data row0 col7">33.0%</td>
+<td id="T_84183_row0_col8" class="data row0 col8">1</td>
+</tr>
+<tr class="even">
+<td id="T_84183_row1_col0" class="data row1 col0">5</td>
+<td id="T_84183_row1_col1" class="data row1 col1">Business Analytics</td>
+<td id="T_84183_row1_col2" class="data row1 col2">0.750</td>
+<td id="T_84183_row1_col3" class="data row1 col3">0.465</td>
+<td id="T_84183_row1_col4" class="data row1 col4">1.043</td>
+<td id="T_84183_row1_col5" class="data row1 col5">11.7%</td>
+<td id="T_84183_row1_col6" class="data row1 col6">9.6%</td>
+<td id="T_84183_row1_col7" class="data row1 col7">14.0%</td>
+<td id="T_84183_row1_col8" class="data row1 col8">2</td>
+</tr>
+<tr class="odd">
+<td id="T_84183_row2_col0" class="data row2 col0">7</td>
+<td id="T_84183_row2_col1" class="data row2 col1">Customer Analytics</td>
+<td id="T_84183_row2_col2" class="data row2 col2">0.669</td>
+<td id="T_84183_row2_col3" class="data row2 col3">0.366</td>
+<td id="T_84183_row2_col4" class="data row2 col4">0.972</td>
+<td id="T_84183_row2_col5" class="data row2 col5">10.8%</td>
+<td id="T_84183_row2_col6" class="data row2 col6">8.8%</td>
+<td id="T_84183_row2_col7" class="data row2 col7">12.9%</td>
+<td id="T_84183_row2_col8" class="data row2 col8">3</td>
+</tr>
+<tr class="even">
+<td id="T_84183_row3_col0" class="data row3 col0">4</td>
+<td id="T_84183_row3_col1" class="data row3 col1">Large Data</td>
+<td id="T_84183_row3_col2" class="data row3 col2">0.564</td>
+<td id="T_84183_row3_col3" class="data row3 col3">0.309</td>
+<td id="T_84183_row3_col4" class="data row3 col4">0.855</td>
+<td id="T_84183_row3_col5" class="data row3 col5">9.7%</td>
+<td id="T_84183_row3_col6" class="data row3 col6">8.0%</td>
+<td id="T_84183_row3_col7" class="data row3 col7">11.6%</td>
+<td id="T_84183_row3_col8" class="data row3 col8">4</td>
+</tr>
+<tr class="odd">
+<td id="T_84183_row4_col0" class="data row4 col0">8</td>
+<td id="T_84183_row4_col1" class="data row4 col1">Capstone</td>
+<td id="T_84183_row4_col2" class="data row4 col2">0.450</td>
+<td id="T_84183_row4_col3" class="data row4 col3">0.171</td>
+<td id="T_84183_row4_col4" class="data row4 col4">0.753</td>
+<td id="T_84183_row4_col5" class="data row4 col5">8.6%</td>
+<td id="T_84183_row4_col6" class="data row4 col6">7.1%</td>
+<td id="T_84183_row4_col7" class="data row4 col7">10.4%</td>
+<td id="T_84183_row4_col8" class="data row4 col8">5</td>
+</tr>
+<tr class="even">
+<td id="T_84183_row5_col0" class="data row5 col0">2</td>
+<td id="T_84183_row5_col1" class="data row5 col1">SQL</td>
+<td id="T_84183_row5_col2" class="data row5 col2">0.445</td>
+<td id="T_84183_row5_col3" class="data row5 col3">0.162</td>
+<td id="T_84183_row5_col4" class="data row5 col4">0.731</td>
+<td id="T_84183_row5_col5" class="data row5 col5">8.6%</td>
+<td id="T_84183_row5_col6" class="data row5 col6">7.1%</td>
+<td id="T_84183_row5_col7" class="data row5 col7">10.3%</td>
+<td id="T_84183_row5_col8" class="data row5 col8">6</td>
+</tr>
+<tr class="odd">
+<td id="T_84183_row6_col0" class="data row6 col0">10</td>
+<td id="T_84183_row6_col1" class="data row6 col1">BI Systems</td>
+<td id="T_84183_row6_col2" class="data row6 col2">0.250</td>
+<td id="T_84183_row6_col3" class="data row6 col3">-0.013</td>
+<td id="T_84183_row6_col4" class="data row6 col4">0.518</td>
+<td id="T_84183_row6_col5" class="data row6 col5">7.1%</td>
+<td id="T_84183_row6_col6" class="data row6 col6">5.8%</td>
+<td id="T_84183_row6_col7" class="data row6 col7">8.5%</td>
+<td id="T_84183_row6_col8" class="data row6 col8">7</td>
+</tr>
+<tr class="even">
+<td id="T_84183_row7_col0" class="data row7 col0">1</td>
+<td id="T_84183_row7_col1" class="data row7 col1">AI Math / Programming</td>
+<td id="T_84183_row7_col2" class="data row7 col2">0.000</td>
+<td id="T_84183_row7_col3" class="data row7 col3">0.000</td>
+<td id="T_84183_row7_col4" class="data row7 col4">0.000</td>
+<td id="T_84183_row7_col5" class="data row7 col5">5.5%</td>
+<td id="T_84183_row7_col6" class="data row7 col6">4.4%</td>
+<td id="T_84183_row7_col7" class="data row7 col7">6.7%</td>
+<td id="T_84183_row7_col8" class="data row7 col8">8</td>
+</tr>
+<tr class="odd">
+<td id="T_84183_row8_col0" class="data row8 col0">3</td>
+<td id="T_84183_row8_col1" class="data row8 col1">Mkt/Fin/Ops</td>
+<td id="T_84183_row8_col2" class="data row8 col2">-0.054</td>
+<td id="T_84183_row8_col3" class="data row8 col3">-0.335</td>
+<td id="T_84183_row8_col4" class="data row8 col4">0.243</td>
+<td id="T_84183_row8_col5" class="data row8 col5">5.2%</td>
+<td id="T_84183_row8_col6" class="data row8 col6">4.3%</td>
+<td id="T_84183_row8_col7" class="data row8 col7">6.4%</td>
+<td id="T_84183_row8_col8" class="data row8 col8">9</td>
+</tr>
+<tr class="even">
+<td id="T_84183_row9_col0" class="data row9 col0">6</td>
+<td id="T_84183_row9_col1" class="data row9 col1">Analytics Consulting</td>
+<td id="T_84183_row9_col2" class="data row9 col2">-0.231</td>
+<td id="T_84183_row9_col3" class="data row9 col3">-0.500</td>
+<td id="T_84183_row9_col4" class="data row9 col4">0.060</td>
+<td id="T_84183_row9_col5" class="data row9 col5">4.4%</td>
+<td id="T_84183_row9_col6" class="data row9 col6">3.5%</td>
+<td id="T_84183_row9_col7" class="data row9 col7">5.3%</td>
+<td id="T_84183_row9_col8" class="data row9 col8">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-bayes-share-plot" class="cell" data-execution_count="20">
+<div class="cell-output cell-output-display">
+<div id="bayes-share-plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/bayes-share-plot-output-1.png" width="757" height="470" class="figure-img"></p>
+<figcaption>Bayesian posterior mean shares with 95% credible intervals</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The Bayesian estimates are very close to the MLE estimates. This is expected because the prior is weak and the dataset has 680 task screens. The posterior mean share for <span class="blue-text">Marketing Analytics</span> is again about <strong>28%</strong>, and its 95% credible interval is clearly above the other classes.</p>
+<p>The credible intervals are the main advantage of the Bayesian version. They show that the top class is clearly separated, but many middle classes overlap. For example, SQL and Capstone are almost tied, so the Bayesian result says they should be treated as similar rather than meaningfully different.</p>
+</section>
+</section>
+<section id="comparing-the-three-methods" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-the-three-methods">Comparing the Three Methods</h2>
+<p>The final table puts the counts score, MLE share, and Bayesian share side by side. This is the main robustness check: if all three approaches rank classes similarly, then the conclusion is not coming from one fragile modeling choice.</p>
+<div id="cell-comparison-table" class="cell" data-execution_count="21">
+<div id="comparison-table" class="cell-output cell-output-display">
+<style type="text/css">
+#T_b516b th {
+  background-color: #eaf4ff;
+  color: #0b4f9f;
+  font-weight: 700;
+  border-bottom: 2px solid #cfe5ff;
+}
+#T_b516b td {
+  border-bottom: 1px solid #e3efff;
+  padding: 6px 10px;
+}
+#T_b516b tbody tr:nth-child(even) {
+  background-color: #f8fbff;
+}
+#T_b516b caption {
+  caption-side: top;
+  color: #0b4f9f;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35rem 0;
+}
+#T_b516b_row0_col4, #T_b516b_row0_col6 {
+  background-color: #08306b;
+  color: #f1f1f1;
+}
+#T_b516b_row1_col4 {
+  background-color: #b4d3e9;
+  color: #000000;
+}
+#T_b516b_row1_col6 {
+  background-color: #b5d4e9;
+  color: #000000;
+}
+#T_b516b_row2_col4, #T_b516b_row2_col6 {
+  background-color: #c2d9ee;
+  color: #000000;
+}
+#T_b516b_row3_col4, #T_b516b_row3_col6 {
+  background-color: #ccdff1;
+  color: #000000;
+}
+#T_b516b_row4_col4, #T_b516b_row4_col6, #T_b516b_row5_col4 {
+  background-color: #d4e4f4;
+  color: #000000;
+}
+#T_b516b_row5_col6 {
+  background-color: #d5e5f4;
+  color: #000000;
+}
+#T_b516b_row6_col4, #T_b516b_row6_col6 {
+  background-color: #e1edf8;
+  color: #000000;
+}
+#T_b516b_row7_col4, #T_b516b_row7_col6 {
+  background-color: #eef5fc;
+  color: #000000;
+}
+#T_b516b_row8_col4, #T_b516b_row8_col6 {
+  background-color: #f1f7fd;
+  color: #000000;
+}
+#T_b516b_row9_col4, #T_b516b_row9_col6 {
+  background-color: #f7fbff;
+  color: #000000;
+}
+</style>
+
+<div id="T_b516b" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_b516b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;11: Side-by-side comparison of counts, MLE, and Bayesian results
+</figcaption>
+<div aria-describedby="T_b516b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_b516b" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_b516b_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">item</th>
+<th id="T_b516b_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">short_label</th>
+<th id="T_b516b_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">counts_score</th>
+<th id="T_b516b_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">counts_rank</th>
+<th id="T_b516b_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">share_mle</th>
+<th id="T_b516b_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">mle_rank</th>
+<th id="T_b516b_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">share_post_mean</th>
+<th id="T_b516b_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">bayes_rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_b516b_row0_col0" class="data row0 col0">9</td>
+<td id="T_b516b_row0_col1" class="data row0 col1">Marketing Analytics</td>
+<td id="T_b516b_row0_col2" class="data row0 col2">0.493</td>
+<td id="T_b516b_row0_col3" class="data row0 col3">1</td>
+<td id="T_b516b_row0_col4" class="data row0 col4">28.4%</td>
+<td id="T_b516b_row0_col5" class="data row0 col5">1</td>
+<td id="T_b516b_row0_col6" class="data row0 col6">28.4%</td>
+<td id="T_b516b_row0_col7" class="data row0 col7">1</td>
+</tr>
+<tr class="even">
+<td id="T_b516b_row1_col0" class="data row1 col0">5</td>
+<td id="T_b516b_row1_col1" class="data row1 col1">Business Analytics</td>
+<td id="T_b516b_row1_col2" class="data row1 col2">0.141</td>
+<td id="T_b516b_row1_col3" class="data row1 col3">2</td>
+<td id="T_b516b_row1_col4" class="data row1 col4">11.7%</td>
+<td id="T_b516b_row1_col5" class="data row1 col5">2</td>
+<td id="T_b516b_row1_col6" class="data row1 col6">11.7%</td>
+<td id="T_b516b_row1_col7" class="data row1 col7">2</td>
+</tr>
+<tr class="odd">
+<td id="T_b516b_row2_col0" class="data row2 col0">7</td>
+<td id="T_b516b_row2_col1" class="data row2 col1">Customer Analytics</td>
+<td id="T_b516b_row2_col2" class="data row2 col2">0.120</td>
+<td id="T_b516b_row2_col3" class="data row2 col3">3</td>
+<td id="T_b516b_row2_col4" class="data row2 col4">10.7%</td>
+<td id="T_b516b_row2_col5" class="data row2 col5">3</td>
+<td id="T_b516b_row2_col6" class="data row2 col6">10.8%</td>
+<td id="T_b516b_row2_col7" class="data row2 col7">3</td>
+</tr>
+<tr class="even">
+<td id="T_b516b_row3_col0" class="data row3 col0">4</td>
+<td id="T_b516b_row3_col1" class="data row3 col1">Large Data</td>
+<td id="T_b516b_row3_col2" class="data row3 col2">0.062</td>
+<td id="T_b516b_row3_col3" class="data row3 col3">4</td>
+<td id="T_b516b_row3_col4" class="data row3 col4">9.7%</td>
+<td id="T_b516b_row3_col5" class="data row3 col5">4</td>
+<td id="T_b516b_row3_col6" class="data row3 col6">9.7%</td>
+<td id="T_b516b_row3_col7" class="data row3 col7">4</td>
+</tr>
+<tr class="odd">
+<td id="T_b516b_row4_col0" class="data row4 col0">8</td>
+<td id="T_b516b_row4_col1" class="data row4 col1">Capstone</td>
+<td id="T_b516b_row4_col2" class="data row4 col2">0.011</td>
+<td id="T_b516b_row4_col3" class="data row4 col3">5</td>
+<td id="T_b516b_row4_col4" class="data row4 col4">8.7%</td>
+<td id="T_b516b_row4_col5" class="data row4 col5">5</td>
+<td id="T_b516b_row4_col6" class="data row4 col6">8.6%</td>
+<td id="T_b516b_row4_col7" class="data row4 col7">5</td>
+</tr>
+<tr class="even">
+<td id="T_b516b_row5_col0" class="data row5 col0">2</td>
+<td id="T_b516b_row5_col1" class="data row5 col1">SQL</td>
+<td id="T_b516b_row5_col2" class="data row5 col2">-0.004</td>
+<td id="T_b516b_row5_col3" class="data row5 col3">6</td>
+<td id="T_b516b_row5_col4" class="data row5 col4">8.6%</td>
+<td id="T_b516b_row5_col5" class="data row5 col5">6</td>
+<td id="T_b516b_row5_col6" class="data row5 col6">8.6%</td>
+<td id="T_b516b_row5_col7" class="data row5 col7">6</td>
+</tr>
+<tr class="odd">
+<td id="T_b516b_row6_col0" class="data row6 col0">10</td>
+<td id="T_b516b_row6_col1" class="data row6 col1">BI Systems</td>
+<td id="T_b516b_row6_col2" class="data row6 col2">-0.120</td>
+<td id="T_b516b_row6_col3" class="data row6 col3">7</td>
+<td id="T_b516b_row6_col4" class="data row6 col4">7.0%</td>
+<td id="T_b516b_row6_col5" class="data row6 col5">7</td>
+<td id="T_b516b_row6_col6" class="data row6 col6">7.1%</td>
+<td id="T_b516b_row6_col7" class="data row6 col7">7</td>
+</tr>
+<tr class="even">
+<td id="T_b516b_row7_col0" class="data row7 col0">1</td>
+<td id="T_b516b_row7_col1" class="data row7 col1">AI Math / Programming</td>
+<td id="T_b516b_row7_col2" class="data row7 col2">-0.209</td>
+<td id="T_b516b_row7_col3" class="data row7 col3">8</td>
+<td id="T_b516b_row7_col4" class="data row7 col4">5.6%</td>
+<td id="T_b516b_row7_col5" class="data row7 col5">8</td>
+<td id="T_b516b_row7_col6" class="data row7 col6">5.5%</td>
+<td id="T_b516b_row7_col7" class="data row7 col7">8</td>
+</tr>
+<tr class="odd">
+<td id="T_b516b_row8_col0" class="data row8 col0">3</td>
+<td id="T_b516b_row8_col1" class="data row8 col1">Mkt/Fin/Ops</td>
+<td id="T_b516b_row8_col2" class="data row8 col2">-0.213</td>
+<td id="T_b516b_row8_col3" class="data row8 col3">9</td>
+<td id="T_b516b_row8_col4" class="data row8 col4">5.2%</td>
+<td id="T_b516b_row8_col5" class="data row8 col5">9</td>
+<td id="T_b516b_row8_col6" class="data row8 col6">5.2%</td>
+<td id="T_b516b_row8_col7" class="data row8 col7">9</td>
+</tr>
+<tr class="even">
+<td id="T_b516b_row9_col0" class="data row9 col0">6</td>
+<td id="T_b516b_row9_col1" class="data row9 col1">Analytics Consulting</td>
+<td id="T_b516b_row9_col2" class="data row9 col2">-0.292</td>
+<td id="T_b516b_row9_col3" class="data row9 col3">10</td>
+<td id="T_b516b_row9_col4" class="data row9 col4">4.4%</td>
+<td id="T_b516b_row9_col5" class="data row9 col5">10</td>
+<td id="T_b516b_row9_col6" class="data row9 col6">4.4%</td>
+<td id="T_b516b_row9_col7" class="data row9 col7">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-comparison-plot" class="cell" data-execution_count="22">
+<div class="cell-output cell-output-display">
+<div id="comparison-plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/comparison-plot-output-1.png" width="1429" height="566" class="figure-img"></p>
+<figcaption>Comparison of rankings across counts, MLE MNL, and Bayesian MNL</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The three methods tell the same overall story. <strong>Marketing Analytics</strong> is the clear favorite under every method. <strong>Business Analytics</strong>, <strong>Customer Analytics</strong>, and <strong>Large Data</strong> form the next strongest group. <strong>Analytics Consulting</strong>, <strong>Marketing/Finance/Operations</strong>, and <strong>AI Math / Programming</strong> are consistently at the bottom.</p>
+<p>The disagreements are small and mostly in the middle. That is exactly where we should expect them: the underlying utilities are close, so small modeling differences or sampling noise can flip nearby ranks. The MNL adds value over counts because it models the choice process directly. Every task contributes information through the full set of items shown, not only through the items selected as best and worst. The Bayesian MNL adds an additional advantage: uncertainty for shares of preference is easy to compute by pushing every posterior draw through the soft-max and summarizing the resulting share distribution.</p>
+</section>
+<section id="conclusion-and-next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-and-next-steps">Conclusion and Next Steps</h2>
+<p>The substantive result is straightforward: <span class="blue-text">Marketing Analytics is the clear favorite</span> in this sample. It is not just slightly ahead. It is separated from the other classes in the counts score, the maximum-likelihood MNL shares, and the Bayesian posterior shares.</p>
+<p>The results can be summarized as:</p>
+<ul>
+<li><strong>Clear top class:</strong> Marketing Analytics.</li>
+<li><strong>Next strongest group:</strong> Business Analytics, Customer Analytics, and Large Data.</li>
+<li><strong>Middle / close group:</strong> Capstone, SQL, and BI Systems. These are close enough that small rank differences should not be over-interpreted.</li>
+<li><strong>Lowest-ranked group:</strong> Analytics Consulting, Marketing/Finance/Operations, and AI Math / Programming.</li>
+<li><strong>Uncertainty takeaway:</strong> The confidence and credible intervals strongly support the top result, but they also show that several middle-ranked classes overlap.</li>
+</ul>
+<p>For a non-technical reader, I would describe the three methods this way:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Best use</th>
+<th>What to be careful about</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Counts</strong></td>
+<td>Quick executive dashboard or first-pass ranking.</td>
+<td>Easy to explain, but not a formal choice model.</td>
+</tr>
+<tr class="even">
+<td><strong>MLE MNL</strong></td>
+<td>Formal model with utility estimates, standard errors, and preference shares.</td>
+<td>Produces point estimates, so uncertainty for shares needs extra work.</td>
+</tr>
+<tr class="odd">
+<td><strong>Bayesian MNL</strong></td>
+<td>Preference shares with direct uncertainty intervals.</td>
+<td>Requires MCMC and basic convergence checking.</td>
+</tr>
+</tbody>
+</table>
+<p>There are also important caveats. This is a sample of MSBA students who responded to the survey, so the results may not generalize to every student. Preferences may depend on when students took each class, who taught it, how recently the course happened, and each student’s background. The model also estimates one shared population-level utility vector; it does not estimate individual-level taste differences.</p>
+<section id="recommended-next-steps" class="level3">
+<h3 class="anchored" data-anchor-id="recommended-next-steps">Recommended next steps</h3>
+<ul>
+<li><strong>Estimate a hierarchical Bayesian MNL model</strong> so each student has their own utility vector drawn from a population distribution.</li>
+<li><strong>Look for polarization</strong>, not just average preference. Some classes may have lower average appeal but stronger appeal to a specific subgroup.</li>
+<li><strong>Compare preferences by student background</strong>, such as technical vs.&nbsp;non-technical background, if that data is available.</li>
+<li><strong>Build a simple simulator</strong> that predicts preference share under different hypothetical course menus.</li>
+<li><strong>Use the intervals in reporting</strong>, especially for the middle-ranked classes, so the story does not overstate small rank differences.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
